@@ -1,0 +1,284 @@
+\newpage
+\section{Обчислення деяких К-груп}
+Метою цього розділу є застосування вивченого матеріала. В цьому розділі будуть обчислені $K_0, K_1$ групи для
+$C(\mathbf{T}), \mathcal{O}_n \otimes \mathcal{O}_m$. Також дається короткий огляд на деформацію Ріфеля $C^*$ - алгебр.
+З наведених тверджень провластивості деформацію Ріфеля легко знайти К-групи деформацій Ріфеля вищенаведених $C^*$ - алгебр.
+\subsection{K0, K1 для $C(\mathbf{T})$}
+\begin{theorem}
+    Нехай $C(\mathbf{T})$ - алгебра функцій, неперервних на торі. \\
+    Тоді $\widetilde{K_i}(C(\mathbf{T})) = \mathbb{Z}$
+
+    \begin{proof}
+        Нехай $\epsilon$ позначає *-гомоморфізм
+        \begin{equation*}
+            C(\mathbf{T}) \to \mathbb{C}, f \to f(1)
+        \end{equation*}
+        Тоді
+        \begin{equation*}
+            0 \to \mathbf{S} \xrightarrow{j} C(\mathbf{T}) \xrightarrow{\epsilon} \mathbb{C} \to 0
+        \end{equation*}
+        є короткою точною послідовністю, яка допускає розщеплення. \\
+        Отже за для довільної $C^*$ - алгебри A
+        \begin{equation*}
+            0 \to \mathbf{S} \otimes_* A \xrightarrow{j \otimes_* id} C(\mathbf{T}) \otimes_* A \xrightarrow{\epsilon \otimes_* id} \mathbb{C} \otimes_* A \to 0
+        \end{equation*}
+        є короткою точною послідовністю, яка допускає розщеплення.
+        Далі для $i=0,1$ послідовність
+        \begin{equation*}
+            0 \to \widetilde{K_i}(\mathbf{S} \otimes_* A) \xrightarrow{(j \otimes_* id)_*} \widetilde{K_i}(C(\mathbf{T}) \otimes_* A) \xrightarrow{(\epsilon \otimes_* id)_*} \widetilde{K_i}(\mathbb{C} \otimes_* A)_* \to 0
+        \end{equation*}
+        є точною і допускає розщеплення.
+        Позначив через $\approx$ відонощення ізоморфізма, зазначаємо, що
+        \begin{multline*}
+            \widetilde{K_i}(C(\mathbf{T}) \otimes_* A) \approx \widetilde{K_i}(\mathbf{S} \otimes_* A) \oplus \widetilde{K_i}(\mathbb{C} \otimes_* A) \approx \\
+            \approx \widetilde{K_i}(S(A)) \oplus \widetilde{K_i}(A) \approx \widetilde{K_{1 - i}}(A) \oplus \widetilde{K_i}(A) \approx \widetilde{K_0}(A) \oplus \widetilde{K_1}(A)
+        \end{multline*}
+        Отже $\widetilde{K_i}(C(\mathbf{T}) \otimes_* \mathbb{C}) \approx $\widetilde{K_i}(C(\mathbf{T})) \approx \widetilde{K_0}(\mathbb{C}) \oplus \widetilde{K_1}(\mathbb{C}) \approx \mathbb{Z}
+    \end{proof}
+    \end{theorem}
+\subsection{K0, K1 для $(\mathcal{O}_n \otimes \mathcal{O}_m)_\Theta$}
+\subsubsection{Деформація Ріфеля}
+Нехай G - локально-компактна група, а A -- деяка $C^*$ - алгебра з груповою
+G-дією $\alpha$.
+Будемо називати трійку $(A, G, \alpha)$ - $C^*$ - динамічною системою. (див. [6])
+
+\begin{definition}
+    Коваріантним зображенням $(A, G, \alpha)$ у $C^*$ - алгебрі B \\ будемо називати пару $(\pi, U)$
+    , де $\pi$ - *-гомоморфізм з A в B, U - зображення групи G в B, такі, що для довільних
+    $a \in A, b \in B$
+    \begin{equation*}
+        \pi(\alpha_t(a)) = U_t \pi(a) U_t^*
+    \end{equation*}
+\end{definition}
+
+\begin{definition}
+    Зхрещеним добутком A на (дію $\alpha$ групою) G називається $C^*$ - алгебра
+    C з коваріантним зображенням $(\pi, U)$ системи $(A, G, \alpha)$, в C ,
+    таким, що для довільної $C^*$ - алгебри B та довільного коваріантного \\ зображення
+    $(\rho, V)$ системи $(A,G,\alpha)$ в B існує єдиний *-гомоморфізм $\Psi: C \to B$,
+    такий, що $\pho = \Psi \circ \pi, V_t = \Psi(U_t)$ для всіх $t \in G$.
+\end{definition}
+
+\begin{proposition}
+    Два довільні зхрещені добутки A на G є однаковими, з точністю до ізоморфізма
+    який зберігає коваріантне зображення $(A,G,\alpha)$ у зхрещеному добутку.
+\end{proposition}
+Будемо позначати зхрещений добуток через  $A \rtimes_\alpha G$.
+
+Для нього можна визначити два вкладення
+\begin{align*}
+    i_A: A \to M(A \rtimes_\alpha G)&, i_G: G \to M(A \rtimes_\alpha G) \\
+    (i_A(a)f)(s) = a f(s)&, (i_G(t)f)(s) = \alpha_t(f(t^{-1}s)), t,s \in G, a \in A
+\end{align*}
+для $f \in C_c(G, A)$
+
+\begin{remark}
+    Очевидно, що $i_G(s)$ - унітарний елемент з $M(A \rtimes_\alpha G)$ для
+    довільних $s \in G$.
+    Також $i_G$ визначає наступний гомоморфізм яких так само будемо позначати
+    через $i_G$
+    \begin{align*}
+        i_G: C^*(G) \to M(A \rtimes_\alpha G) \\
+        i_G(f) = \int_G f(s)i_G(s) d\lambda(s)
+    \end{align*}
+    , де $\lambda$ - ліва міра Хаара.
+\end{remark}
+
+Зазначимо, що для довільного $g \in C_c(G,A)$ маємо
+\begin{equation*}
+    (i_G(f)g)(t) = f \cdot_\alpha g
+\end{equation*}
+де $\cdot_\alpha$ є добутком у $A \rtimes_\alpha G$.
+Якщо A - унітальна то ми можемо зпівставити $i_G(f)$ з $f \cdot_\alpha \mathbf{1}_A$
+та $i_G$ відображає $C^*(G)$ $A \rtimes_\alpha G$.
+Також
+\begin{equation*}
+    i_G(t)i_A(a)i_G(t)^{-1} = i_A(\alpha_t(a)) \in M(A \rtimes_\alpha G)
+\end{equation*}
+
+Якщо $\phi$ - це еквіваріантний гомоморфізм між $C^*$ - алгебрами A з G-дією
+\alpha та B з G-дією $\beta$, то можна визначити гомоморфізм
+\begin{equation*}
+    \phi \rtimes G: A \rtimes_\alpha G \to B \rtimes G, (\phi \rtimes G)(f)(t) = \phi(f(t)), f \in C_c(G,A)
+\end{equation*}
+
+Якщо A - унітальна $C^*$ - алгебра з G-дією $\alpha$, то $\iota_A: \mathbb{C} \to A, \lambda \to \lambda 1_A$
+є еквіваріантним гомоморфізмом, де G діє трівіально на $\mathbb{C}$.
+З того, що $\mathbb{C} \rtimes G = C^*(G)$, ми маємо
+$\iota_A \rtimes G: C^*(G) \to A \rtimes_\alpha G$.
+В цьому випадку ми маємо,
+$\iota_a \rtimes G = i_G$
+Дійсно, для довільного $g \in G_c(G,A)$:
+\begin{multline*}
+    (i_G(f) \cdot_\alpha g)(s) = \int_G f(t)\alpha_t(g(t^{-1}s))dt \\
+    = \int_G f(t)1_A\alpha_t(g(t^{-1}s))dt
+    = ((f(\cdot)1_A)\cdot_\alpha g)(s) = ((\iota_A \rtimes G)(f) \rtimes_\alpha g)(s),
+\end{multline*}
+з цього випливає $i_G(f) = (\iota_A \rtimes G)(f)$, для довільного $f \in C^*(G)$.
+
+Нехай A - деяка $C^*$ - алгебра, наділена дією $\mathbb{R}^n$ $\alpha$.
+Далі нехай $\Theta \in M_n(\mathbb{R})$ - кососиметрична матриця.
+Тоді можна визначити деформацію Ріфеля $C^*$ - алгебри A, яку будемо
+позначати через $A_\theta$. (див [11])
+
+Множина елементів $a \in A$ , така, що функія $x \to \alpha_x(a)$ належить $C^\infty(\mathbb{R}^n, A)$
+, яку будемо позначати $A_\infty$ є щільною  підмножиною $A_\Theta$.
+Для довільних двох елементів $a,b \in A_\infty$ їх добуток визначимо таким чином
+\begin{equation}\label{formula:1}
+a \cdot_\Theta b = \int_{\mathbb{R}^n}\int_{\mathbb{R}^n}
+\alpha_{\Theta(x)}(a) \alpha_y(b) e^{2 \pi i \langle x, y \rangle} dx dy
+\end{equation}
+
+Нижче ми будемо розглядати періодичні дії на $\mathbb{R}^n$, тобто
+ми будемо вважати, що $\alpha$ - дія групи $\mathbb{T}^n$.
+Маючи характер $\chi \in \hat{\mathbb{T}}^n \simeq \mathbb{Z}^n$ розглянемо
+\begin{equation*}
+    A_\chi = \{ a \in A : \alpha_z(a) = \chi(z)a, для кожного z \in T^n \}
+\end{equation*}
+Тоді
+\begin{equation*}
+    A = \overline{\bigoplus_{\chi \in \mathbb{Z}^n} A_\chi}
+\end{equation*}
+де деякі доданки можуть бути нульовими, та $A_{\chi_1} \cdot A_{\chi_2} \in A_{\chi_1 + \chi_2}, A_\chi^* = A_{-\chi}$.
+З цього можна розглядати $A_\chi$, $\chi \in \mathbb{Z}^n$ як однорідні компоненти
+$\mathbb{Z}^n$-градуювання A .
+Навпаки, довільне $\mathbb{Z}^n$-градуювання $C^*$ - алгебри A визначає дію
+групи $\mathbb{T}^n$ на A: для $a \in A_p$ ми покладемо $a_t(a) = e^{2\pi i \langle t, p \rangle} a$.
+
+Для періодичної дії $\alpha$ групи $\mathbb{R}^n$ на $C^*$ - алгебрі A та кососиметричної
+матриці $\Theta$ зконструюємо деформацію Ріфеля $A_\Theta$.
+Зазначимо, що однорідні елементи належать $A_\infty$.
+Застосуємо формулу $\ref{formula:1}$ до $a \in A_p, b \in A_q$
+\begin{align*}
+    a \cdot_\Theta b &= \int_{\mathbb{R}^n}\int_{\mathbb{R}^n} e^{2 \pi i \langle \Theta(x), p \rangle } a e^{2 \pi i \langle y, q \rangle } b e^{2 \pi i \langle x, y \rangle } dx dy \\
+    &= a \cdot b \int_{\mathbb{R}^n} e^{2 \pi i \langle y, q \rangle } \int_{\mathbb{R}^n} e^{2} e^{2 \pi i \langle x, -\Theta(p) \rangle } e^{2 \pi i \langle y, q \rangle } dx dy \\
+    &= a \cdot b \int_{\mathbb{R}^n} e^{2 \pi i \langle y, q \rangle} \delta_{y - \Theta(p)} dy \\
+    &= e^{2 \pi i \langle \Theta(p), q \rangle} a \cdot b
+\end{align*}
+
+З цього для $a \in A_p, b \in A_q$ маємо
+\begin{equation}
+    \label{formula:2}
+    a \cdot_\Theta b = e^{2 \pi i \langle \Theta(p), q \rangle} a \cdot b
+\end{equation}
+
+\begin{remark}
+    Зазначимо, що а також наділена $\mathbb{Z}^n$-градуювання таке, що
+    $(A_\Theta)_p = A_p$, для $p \in \mathbb{Z}^n$.
+    Через $\ref{formula:2}$ маємо $a \cdot_\Theta b = a \cdot b$ для
+    довільних $a,b \in A_{\pm p}, p \in \mathbb{Z}^n$.
+    Дійсно, для довільної кососиметричної матриці $\Theta \in M_n(\mathbb{R}^n)$
+    та $p \in \mathbb{Z}^n$ справджується $\langle \Theta p, \pm p \rangle.$
+    Спряження на $(A_\Theta)_p$ збігається з спряження на $A_p$.
+\end{remark}
+
+Розглянемо $C^*$ - динамічну систему $(A, \mathbb{T}^n, \alpha)$ та його
+коваріантне \\ зображення $(\pi, U)$ на гільбертовому просторі $\mathcal{H}$ .
+Для довільного $p \in \mathbb{Z}^n \simeq \hat{\mathbb{T}}^n$ покладемо
+\begin{equation*}
+    \mathcal{H}_p = \{ h \in \mathcal{H} | U_t h = e^{2 \pi i \langle t, p \rangle} h \}
+\end{equation*}
+Тоді $\mathcal{H} = \bigoplus_{p \in \mathcal{Z}^n} \mathcal{H}_p$.
+
+\begin{proposition}{[12] Теорема (2.8)} \\
+
+    Нехай $(\pi, U)$ - коваріантне зображення динамічної системи $(A, \mathbb{T}^n, \alpha)$ на гільбертів простір $\mathcal{H}$.
+    Тоді ми можемо визначити зображення $\pi_\Theta$ алгебри $A_\Theta$ таким чином:
+    \begin{equation*}
+        \pi_\Theta(a) \xi = e^{2 \pi i \langle \Theta(p), q \rangle} \pi(a) \xi
+    \end{equation*}
+    для довільного $\xi \in \mathcal{H}_q, a \in A_p, p,q \in \mathbb{Z}^n$.
+    Далі $\pi_\Theta$ точне тоді і тільки тоді, коли $\pi$ - точне.
+\end{proposition}
+
+Відомо, що деформація Ріфеля може бути вкладена в $M(A \rtimes_\alpha \mathbb{R}^n)$,
+а для періодичних дій можна дати явний опис цього вкладення
+\begin{proposition}{[13] Лема 3.1.1} \\
+
+    Дані відображення визначають вкладення
+    \begin{equation*}
+        i_{A_\Theta}: A_\Theta \to M(A \rtimes_\alpha \mathbb{R}^n), i_{A_\Theta}(a_p) = i_A(a_p)i_{\mathbb{R}^n}(- \theta(p))
+    \end{equation*}
+    де, $p \in \mathbb{Z}^n$ та $a_p$ однорідне степені p.
+\end{proposition}
+
+\begin{proposition}{[14] пропозиція 3.2 та [13] Секція 3.1} \\
+
+    Нехай $(A, \mathbb{R}^n, \alpha)$ - $C^*$ - динамічна система з періодичною
+    дією $\alpha$ \\ та унітальною $A$ .
+    Нехай $A_\Theta$ - деформація Ріфеля $C^*$ - алгебри A .
+    Тоді існує періодична дія $a^\Theta$ групи $\mathbb{R}^n$ на $A_\Theta$ та
+    ізоморфізм $\Psi: A_\Theta \rtimes_{\alpha^\Theta} \mathbb{R}^n \to A \rtimes_\alpha \mathbb{R}^n$
+    такий, що ця діаграма
+    \begin{equation*}
+        % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQBhAPQCoAKADoCAtvRwALAEaTgAJQC+XMPIAEQ7MJgBHFRwD65QSLFSZCpQEoQ80uky58hFOVLFqdJq3YBBPUIkwOPRqAgBOeJpwfgJMaOLBQqIS0nKKhDZ22HgERABMru4MLGyIIN4h4ViR0bHxIUmmqUrW7jBQAObwRKAAZqEQwkguIDgQSGQexexYesCJJinmyiA0jPSSMIwACvbZTiChWO3iONa2IH0DQzSjSPmTXqUzc8bJZmnyZ739g4gTt4h7kVHiAhFtsC15EA
+        \begin{tikzcd}
+            & C^*(\mathbb{R}^n) \simeq C_0(\mathbb{R}^n) \arrow[ld, "i_{\mathbb{R}^n}"'] \arrow[rd, "i_{\mathbb{R}^n}"] &\\
+            A_\Theta \rtimes_{\alpha^\Theta} \mathbb{R}^n \arrow[rr, "\Psi"] & & A \rtimes_\alpha \mathbb{R}^n
+        \end{tikzcd}
+    \end{equation*}
+
+    $\alpha^\Theta(a) = \alpha(a)$ виконується для довільного $a \in A_p, p \in \mathbb{Z}^n$.
+
+    Нескладно переконатись, в тому, що $i_{A_\Theta}: A_\Theta \to M(A \rtimes_\alpha \mathbb{R}^n)$ з $i_{\mathbb{R}^n}: \mathbb{R}^n \to M(A \rtimes_\alpha \mathbb{R}^n)$
+    визначає коваріантне зображення $(A_\Theta, \mathbb{R}^n, \alpha^\Theta)$ в $M(A \rtimes \mathbb{R}^n)$.
+    З цього використовуючи універсальну властивість зхрещенного добутка ми маємо відповідний гомоморфізм
+    \begin{equation*}
+        \Psi: A_\Theta \rtimes_{\alpha^\Theta} \mathbb{R}^n \to M(A \rtimes_\alpha \mathbb{R}^n)
+    \end{equation*}
+    Образ $\Psi$ співпадає з $A \rtimes_\alpha \mathbb{R}^n$ та $\Psi$ визначає гомоморфізм
+    \begin{equation*}
+        \Psi: A_\Theta \rtimes_{\alpha^\Theta} \mathbb{R}^n \to A \rtimes_\alpha \mathbb{R}^n
+    \end{equation*}
+\end{proposition}
+
+\begin{proposition}{[14] Теорема 3.13} \\
+    Для $C^*$ - алгебри A
+    \begin{equation*}
+        \widetilde{K}_0(A_\Theta) = \widetilde{K}_0(A) \text{ та } \widetilde{K}_1(A_\Theta) = \widetilde{K}_1(A)
+    \end{equation*}
+\end{proposition}
+
+\begin{theorem}
+    Нехай $d = \gcd(n - 1, m - 1)$.
+    Тоді
+    \begin{equation*}
+        \widetilde{K}_0(\mathcal{O}_n \otimes \mathcal{O}_m) \simeq \mathbb{Z}/d\mathbb{Z},
+        \widetilde{K}_1(\mathcal{O}_n \otimes \mathcal{O}_m) \simeq \mathbb{Z}/d\mathbb{Z}
+    \end{equation*}
+    Формула Кунета(див. [15] Теорема 23.1.3) дає нам таку коротку точну
+    \\ послідовність
+    \begin{equation*}
+        0
+        \to \bigoplus_{i \in \mathbb{Z}_2} \widetilde{K}_i(\mathcal{O}_n) \otimes_{\mathbb{Z}} \widetilde{K}_{i+j}(\mathcal{O}_m)
+        \to \widetilde{K}_j(\mathcal{O}_n \otimes \mathcal{O}_m)
+        \to \bigoplus_{i \in \mathbb{Z}_2} Tor_1^{\mathbb{Z}}(K_i(\mathcal{O}_n), \widetilde{K}_{i+j}(\mathcal{O}_m))
+    \end{equation*}
+    З гомологічної алгебри відомо(див [16]), що для абелевої групи A
+    \begin{equation*}
+        Tor_1^{\mathbb{Z}}(A, \mathbb{Z}/d\mathbb{Z}) \simeq Ann_A(d) = \{a \in A | da = 0\}
+    \end{equation*}
+    З цього отримаємо
+    \begin{equation*}
+        Tor_1^{\mathbb{Z}}(\mathbb{Z}/n\mathbb{Z}, \mathbb{Z}/m\mathbb{Z}) \simeq \mathbb{Z}/\gcd(n,m)\mathbb{Z}
+    \end{equation*}
+    Далі з того, що(див. [2])
+    \begin{equation*}
+        \widetilde{K}_0(\mathcal{O}_n) = \mathbb{Z}/(n-1)\mathbb{Z},
+        \widetilde{K}_1(\mathcal{O}_n) = 0
+    \end{equation*}
+    маємо такі короткі точні послідовності
+    \begin{align*}
+        0
+        &\to \mathbb{Z}/(n-1)\mathbb{Z} \otimes_{\mathbb{Z}} \mathbb{Z}/(m-1)\mathbb{Z}
+        \to \widetilde{K}_0(\mathcal{O}_n \otimes \mathcal{O}_m)
+        \to 0
+        \to 0, \\
+        0
+        &\to 0
+        \to \widetilde{K}_1(\mathcal{O}_n \otimes \mathcal{O}_m)
+        \to \mathbb{Z}/d\mathbb{Z}
+        \to 0,
+    \end{align*}
+    з цього очевидним образом випливає твердження теореми
+\end{theorem}

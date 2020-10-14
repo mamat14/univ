@@ -1,0 +1,1 @@
+["sbt.Task[scala.collection.immutable.Map[java.lang.String, scala.collection.Seq[scala.Tuple2[java.nio.file.Path, sbt.nio.FileStamp]]]]",{"2.13.3":{"hashes":[["/Users/dmytriim/Documents/University/5_kurs/compilers/arithm/src/main/scala/Main.scala","8d27a19d18fc092d81fee98ce020c0414c105bfd"]],"lastModifiedTimes":[]}}]

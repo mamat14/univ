@@ -1,0 +1,63 @@
+%%% Кодировки и шрифты %%%
+\usepackage[utf8]{inputenc}
+% Украинский язык
+%\usepackage[english]{babel}
+\usepackage[ukrainian]{babel}
+
+%%%% Установки для размера шрифта 14 pt %%%%
+\usepackage[14pt]{extsizes}
+%библиография в содержании
+\usepackage[nottoc]{tocbibind}
+%%% Математические пакеты %%%
+\usepackage{amsthm,amsmath,amscd}   % Математические дополнения от AMS
+\usepackage{amsfonts,amssymb}       % Математические дополнения от AMS
+\usepackage{mathtools}              % Добавляет окружение multlined
+\usepackage{stmaryrd }
+\usepackage{tikz}
+\usepackage{xcolor}
+\usetikzlibrary{cd, babel}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+\DeclareMathOperator{\Ima}{Im}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}{Лема}[section]
+\newtheorem{proposition}{Пропозиція}[section]
+\newtheorem{axiom}{Аксіома}[section]
+
+% %        Подчиненные счетчики в окружениях
+% %\newtheorem{lemmac}[theorem]{Лемма}
+% % Теорема 1, предложение 2, гипотеза 3...
+
+% %        Двойная нумерация окружений
+% \newtheorem{theorems}{Теорема}[section]
+% \newtheorem{lemmas}{Лемма}[section]
+% % Теорема 1.1, лемма 1.1, предложение 1.1 и т.п.
+
+%        Ненумерованные окружения
+\newtheorem*{theoremnn}{Теорема}
+% Просто теорема (без номера)
+% Окружения с прямым шрифтом
+\theoremstyle{Визначення}
+\newtheorem{definition}{Означення}[section]
+\newtheorem{corollary}{Наслідок}[section]
+\newtheorem{remark}{Зауваження}[section]
+\newtheorem{example}{Приклад}[section]
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=25mm,
+ top=20mm,
+ right=10mm,
+ bottom=20mm
+ }                            % Для последующего задания полей
+\usepackage{breqn}
+%%% Оформление абзацев %%%
+\usepackage{indentfirst}                            % Красная строка
+%%% Гиперссылки %%%
+\usepackage{hyperref}
+%%% Изображения %%%
+\usepackage{graphicx}                  % Подключаем пакет работы с графикой
+\newcommand{\Lim}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}

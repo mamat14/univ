@@ -1,0 +1,1736 @@
+\newpage
+\section{К-теорія $C^*$-алгебр}
+%\begin{enumerate}
+%    \item Unitary elements
+%    \item K1 group
+%    \item K0 and K1 connections
+%    \item Properties of K0 and K1 periodicity, connectivity // par 4
+%    \item Six term exact sequence //par 5
+%    \item Kunneth formula
+%\end{enumerate}
+
+\subsection{Група $K_0$}\label{subsec:група}
+Матеріали цього параграфа взяті з [9](див. глави 4, 6)
+Нехай A - деяка $C^*$-алгебра.
+% Нехай далі, $a = (a_{ij})$ та $b = (b_{jk})$ відповідно $m \times n$ та $n \times p$ матриці.
+Покладемо
+\begin{equation}
+    P[A] = \bigcup_{n=1}^{\infty} \{p \in M_n(A) | p - \text{проектор}\}
+\end{equation}
+Нехай $p,q \in P[A]$, тоді називатимемо p,q унітарно еквівалентними ($p \sim q$),
+якщо існує u таке, що $p = u^* u, q = u u^*$.
+При цьому можемо вважати, що $u = u u^* u$.
+Нескладно переконатись в тому, що $\sim$ є відношенням еквівалентності на P[A].
+\begin{theorem}{[10] Лема 4.1.4}
+    Нехай A - деяка $C^*$ - алгебра. \\
+    Тоді справджується:
+    \begin{enumerate}
+        \item $p \sim p', q \sim q' => p \oplus q \sim p' \oplus q'$,
+        \item $p \oplus q \sim q \oplus p$,
+        \item $p , q \in M_n(A), p q = 0 \implies p + q \sim p \oplus q$.
+    \end{enumerate}
+\end{theorem}
+
+Якщо A - унітальна $C^*$ - алгебра, то називаємо p, q стабільно еквівалентними $p \approx q$, якщо
+знайдеться таке натуральне число n , що $1_n \oplus p \sim 1_n \oplus q$.
+Легко бачити, що $\approx$ є відношенням еквівалентності.
+З $p \approx p', q \approx q' \implies p \oplus q \approx p' \oplus q'$.
+Позначимо клас еквівалентності елемента p через [p].
+А множину таких классів позначимо через $K_0(A)^+$. \\
+Визначимо додавання, таким чином:
+\begin{equation}
+[p] + [q] = [p \oplus q]
+\end{equation}
+
+\begin{theorem}
+    Якщо A - унітальна $C^*$ - алгебра, то $K_0(A)^+$ з вище наведеною операцією
+    додавання є комутативною скоротною напівгрупою з одиницею.
+    \begin{proof}
+        Комутативність та асоціативність - очевидні.
+        Доведемо скоротність.
+        Припустимо $[p] + [q] = [r] + [q]$, тоді доведемо, що $p \approx r$.
+        Нехай $q \in M_n(A)$:
+        \begin{align*}
+            p \oplus q \approx r \oplus q \implies 1_n \oplus p \oplus q \sim 1_n \oplus r \oplus q \implies \\
+            (1_m - q) \oplus 1_n \oplus p \oplus q = (1_m - q) \oplus 1_n \oplus r \oplus q \implies \\
+            1_m \oplus 1_n \oplus p \sim 1_m \oplus 1_n \oplus r \implies 1_{m+n} \oplus p \sim 1_{m+n} \oplus r
+        \end{align*}
+        Також очевидно, що $[0]$ - є одиницею цієї алгебри.
+    \end{proof}
+\end{theorem}
+
+Конструкція групи Гротендіка взята з [10](див. 4.2)
+Нехай N - комутативна скоротна напівгрупа з одиницею.
+Задамо на $N \times N$ відношення еквівалентності $\sim$ таким чином:
+\[
+    (x,y) \sim (z, t) \iff  x + t = y + z
+\]
+Позначимо через [x,y] клас еквівалентності який містить (x,y).
+Множину усіх класів еквівалентності позначимо через G(N).
+Визначимо додавання таким чином:
+\[
+    [x,y] + [z,t] = [x+z, y+t]
+\]
+Оберненим до класу [x,y] є клас [y,x].
+Тепер нескладно перевірити, що G(N) - є комутативною групою з одиницею.
+Ця група називається групою Гротендіка групи N.
+
+Відображення $\phi: N \rightarrow G(N), x \rightarrow [x,0]$ є гомоморфізмом.
+Більше того $\phi$ є ін'єктивним гомоморфізмом.
+Тож N можна ототожнити з піднапівгрупою G(N).
+
+Якщо $\phi: N \rightarrow K$ - гомоморфізм, а K - комутативна,
+то існує єдиний гомоморфізм $\widetilde{\phi}: G(N) \rightarrow K$, який її продовжує.
+
+Якщо A - унітальна $C^*$ - алгебра, то через $K_0(A)$ позначається група \\
+Гротендіка $K_0(A)^+$.
+
+Нехай $\phi : A \rightarrow B$ деякий *-гомоморфізм зірочка алгебр.
+Нехай $a = (a_{ij})$ - деяка $m \times n$ матриця з елементами із A, а $b = (b_{jk})$ - деяка $n \times p$ матриця з елементами із B.
+Нехай $\phi((a_{ij})) = (\phi(a)_{ij})$. Тоді $\phi(a b) = \phi(a) \phi(b)$.
+Також $\phi(a^*) = \phi(a)^*$.
+Тепер, якщо $p \sim q$, то $\phi(p) \sim \phi(q)$.
+Якщо A-унітальна, то $p \approx q \implies \phi(p) \approx \phi(q)$.
+Тепер визначимо відображення $\phi_* : K_0(A) \rightarrow K_0(B)$ таким чином: $\phi_*([p]) = [\phi(p)]$.
+Далі $\phi_*([p]+[q]) = \phi_*([p \oplus q]) = [\phi(p \oplus q)] = [\phi(p) \oplus \phi(q)] = \phi_*([p]) + \phi_*([q])$.
+Також $\phi_*([0]) = [\phi(0)] = [0]$.
+Звідси маємо, що $\phi_*: K_0(A) \rightarrow K_0(B)$ є гомоморфізмом груп.
+Тож можемо визначити функтор $F$ між категорією $C^*$ - алгебр та категорією груп.
+$F(A) = K_0(A), F(\phi) = \phi_*$
+Перевіримо необхідні властивості:
+\begin{align*}
+    F(id_A)([p]) &= [id_A(p)] = [p] \implies F(id_A) = id_{K_0(A)} \\
+    F(\phi \circ \psi)([p]) &= [(\phi \circ \psi)(p)] = F(\phi)[\psi(p)] = F(\phi) \circ F(\psi)([p]) \implies \\
+    F(\phi \circ \psi) &= F(\phi) \circ F(\psi)
+\end{align*}
+
+\begin{example}
+    Нескладно перевірити, що проектори $p,q \in P[\mathbb{C}]$ еквіаплентні тоді і тільки тоді, коли
+    $rank(p) = rank(q)$.
+    Більш того $rank(p \oplus q) = rank(p) + rank(q)$.
+    Тож можемо визначити гомоморфізм $rank: K_0(A)^+  \rightarrow \mathbb{Z}$.
+    Цей гомоморфізм однозначно продовжується до гомоморфізму $rank: K_0(A) \rightarrow \mathbb{Z}$.
+    Більш того цей гомоморфізм є ізоморфізмом.
+    Сюр'єктивність випливає з того, що $rank(1_1) = 1$.
+    Ін'єктивність випливає з того, що довільний елемент $x \in \ker(rank)$ можна записати
+    у вигляді $[p]-[q]$, при цьому $rank(p) = rank(q)$.
+    Отже $[p]=[q]$, а з цього $x = 0$.
+
+    Тепер бачимо, що $K_0(\mathbb{C})$, можна сприймати, як группу розмірності \\
+    оператора, а [p] як узагальнену розмірність проектора.
+\end{example}
+\begin{example}
+    Якщо H - нескінченновимірний сепарабельний гільбертовий простір, то для довільних двох
+    проекторів $p \sim q$.
+    З того, що $M_n(B(H)) = B(H^n)$ випливає $1_1 \oplus p \sim 1_1$, для усіх $p \in P[B(H)]$.
+    З цього $[p] = 0, K_0(B(H)) = 0$.
+\end{example}
+
+\subsection{Унітарні елементи}
+Дивитись [9] секція 4.2.
+Нехай a - елемент унітальної банахової алгебри.
+Так як:
+\begin{equation*}
+    \sum_0^n || \frac{a^n}{n!} || \leq \sum_0^n \frac{||a||^n}{n!} < \infty,
+\end{equation*}
+то, ряд $\sum_0^n \frac{a^n}{n!}$ збігається в A. Позначимо цю сумму через $e^a$.
+Для доведеня наступної теореми нам знадобляться елементарні правила диференціюнування. {див. }
+Припустимо, що $f,g: \mathbb{R} \rightarrow A$, диференційовні відображення.
+Нехай $f', g'$ їх похідні.
+\begin{lemma}
+    $(fg)' = f'g + fg'$
+    \begin{proof}
+        \begin{align*}
+            \frac{fg(x_n) - fg(x)}{x_n - x} = \frac{fg(x_n) - f(x_n)g(x) + f(x_n)g(x) - fg(x)}{x_n - x} = \\
+            \frac{f(x_n)(g(x_n) - g(x))}{x_n-x} + \frac{(f(x_n) - f(x))g(x)}{x_n - x} = \\
+            f(x_n) \frac{g(x_n) - g(x)}{x_n - x} + \frac{f(x_n) - f(x)}{x_n-x} g(x) \implies \\
+            fg'(x) = \lim \frac{fg(x_n)-fg(x)}{x_n - x} = \lim f(x_n) \lim \frac{g(x_n) - g(x)}{x_n - x} + \\
+            \lim \frac{f(x_n) - f(x)}{x_n-x}  g(x) = f(x)g'(x) + f'(x)g(x)
+        \end{align*}
+    \end{proof}
+\end{lemma}
+
+Далі нескладно довести, що $f' = 0 \implies f = const$:
+нехай $\tau \in A^*$, тоді $\tau(f(t))' = \tau'(f(t)) f'(t) = 0 \implies \tau' = 0 \implies
+\tau(f(t)) = \tau(f(0)) \implies f(t) = f(0)$
+\begin{theorem}
+    Нехай A - унітальна *-алгебра.
+    Тоді:
+    \item
+    Якщо $a \in A$, f-диференційовна $f(0) = 1$, $ \forall t: f'(t) = af(t)$, то $f(t) = e^{ta}$.
+    \item
+    Якщо $a \in A$, то $e^a$ має обернений $e^{-a}$, та якщо a, b комутують $e^{a+b} = e^a e^b$.
+    \begin{proof}
+        Якщо $f= e^{at}$, то
+        \begin{equation*}
+            f'(t) = \sum_0^{\infty} (\frac{(at)^n}{n!})' =
+            \sum_1^{\infty} (\frac{n a (at)^{n-1}}{n!}) =
+            a \sum_0^n \frac{(at)^n}{n!} = a f(t).
+        \end{equation*}
+        Нехай $f, g$ - пара диференційовних функцій, таких, що $f'(t) = af(t), g'(t) = ag(t)$, тоді
+        \begin{equation*}
+            h(t) = (f(t)g(-t))' = f(t)g'(-t) + f'(t)g(-t) = - f(t)ag(-t) + af(t)g(-t) = 0
+        \end{equation*}
+        З наведеного випливає, то якщо $f'(t) = af(t)$, то $f(t) = e^{at}$.
+        Отже $h(t) = 1, \forall t$.
+        У випадку $f = e^{at}, g = e^{at}$ маємо $f(t)g(-t) = e^{at} e^{-at} = 1$
+
+        Тепер нехай елементи $a,b$ комутують:
+        \begin{align*}
+            f(t) &= e^{ta}e^{tb}: \\
+            f'(t) &= e^{ta} b e^{tb} + a e^{ta} e^{tb} = (a+b)f(t) \implies f(t) = e^{t(a+b)}
+        \end{align*}
+    \end{proof}
+\end{theorem}
+
+Нехай A - унітальна $C^*$ - алгебра.
+Позначимо через $U_n(A)$ групу унітарних елементів з $M_n(A)$.
+Через $U_n^0(A)$ позначимо зв'язну компоненту одиниці в цій групі.
+Якщо $n = 1$, то будемо писати просто $U(A), U^0(A)$.
+
+\begin{theorem}
+    Нехай A - унітальна $C^*$ - алгебра.
+    Тоді $ U^0(A) $ - нормальна подгруппа в $ U(A) $.
+    Якщо $u \in A$, то $u \in U^0(A)$ тоді і тільки тоді коли існують
+    $a_1, a_2, \dots, a_n \in A_{sa}$ такі що $u = e^{i a_1} e^{i a_2} \dots e^{i a_n}$
+
+    \begin{proof}
+        Нехай $u = e^{i a_1} e^{i a_2} \dots e^{i a_n}$ (a) , тоді очевидно, що
+        $u \in U^0(A) $, бо функція
+        \[
+            [0,1] \rightarrow U(A),
+            t \rightarrow e^{i t a_1} e^{i t a_2} \dots e^{i t a_n}
+        \]
+        задає неперервний шлях із 1 в u.
+        Нехай V - усі зображувані у вигляді $(a)$ елементи.
+        Очевидно, що V - підгрупа в $U^0(A)$.
+        Звідси випливає, що V є окілом усіх своїх точок,
+        тобто є відкритою в A .
+        Звідси усі суміжні класи - відкриті множини.
+        Далі об'єднання таких множин є відкритою множиної і в одночас є
+        добовненням до A .
+        Звідси A - відкрито-замкнута непуста підмножини множини $U^0(A)$.
+        Отже $A = U^0(A)$.
+        Для довільного $u \in U(A)$ $uU^0(A)u^{-1}$ - зв'язно, складається
+        з унітарних елементів та містить одиницю.
+        Тому $uU^0(A)u^{-1} \subset U^0(A)$.
+        Отже $U^0(A)$ - нормальна підгрупа.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}
+    \label{cor:1}
+    Нехай $\phi$ - унітальний сюр'єктивний *-гомоморфізм із \\
+    унітальної
+    $C^*$ - алгебри A у $C^*$ - алгебру B .
+    Тоді для довільного $v \in U^0(B)$ існує $u \in U^0(A)$,
+    такий, що $v = \phi(u)$
+
+    \begin{proof}
+        Якщо $b \in B_{sa}$, то $b = \phi(a)$ і $\phi(a) = b = b^* = \phi(a^*)$.
+        Звідси $b = \frac{\phi(a) + \phi(a^*)}{2}, b = \phi(\frac{a + a^*}{2}), b = \phi(Re(a))$.
+        Можемо вважати, що праобраз \\ самоспряженого елемента - самоспряжений елеменет. \\
+        Тепер $b = e^{i b_1} e^{i b_2} \dots e^{i b_n}, b_i \in B_{sa}$,
+        існують такі $a_i in A_{sa}$, що $\phi(a_i) = b_i$.
+        Нехай $v = e^{i b_1} e^{i b_2} \dots e^{i b_n}$, тоді
+        $u = e^{i a_1} e^{i a_2} \dots e^{i a_n}$ - шуканий елемент.
+    \end{proof}
+\end{corollary}
+
+\begin{remark}
+    Якщо u - симетрія, то $u \in U^0(A)$.
+    Це випливає з того, що
+
+    \begin{multline*}
+        e^{\frac{i \pi u}{2}} =
+        \sum_{n - \text{парне}} \frac{(\frac{i \pi u}{2})^n}{n!} +
+        \sum_{n - \text{непарне}} \frac{(\frac{i \pi u}{2})^n}{n!} =
+        \cos (\frac{\pi}{2}) + iu \sin(\frac{\pi}{2}) = iu
+    \end{multline*}
+    Таким чином $u = e^{i \pi a}$, де $a = \frac{u-1}{2}$
+\end{remark}
+
+\begin{lemma}
+    Нехай p,q еквівалентні проектори з унітарної $C^*$ - алгебри A.
+    Тоді існує $u \in U^0_2(A)$ такий, що $u(p \oplus 0)u^* = q \oplus 0$
+    в $M_2(A)$.
+
+    \begin{proof}
+        Нехай v - частично ізометричний елемент, такий, що
+        $p = v^* v, q = v v^*$.
+        Покладемо:
+        \[
+            u = \begin{pmatrix}
+                    v & 1 - v v^* \\
+                    1 - v^* v & v^* \\
+            \end{pmatrix}
+        \]
+        Нехай далі:
+        \[
+            w = \begin{pmatrix}
+                    0 & 1 \\
+                    1 & 0 \\
+            \end{pmatrix}
+        \]
+        Перевіримо, що u - унітарний елемент.
+        \begin{multline*}
+            u u^* =
+            \begin{pmatrix}
+                v & 1 - v v^* \\
+                1 - v^* v & v^* \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                v^* & 1 - v^* v \\
+                1 - v v^* & v \\
+            \end{pmatrix} = \\
+            = \begin{pmatrix}
+                  (v v^* + (1- v v^*)^2) & (v - v v^* v) + (v - v v^* v) \\
+                  (v^* - v^* v v^*) + (v^* - v^* v v^*) & (1 - v^* v)^2 - v^* v \\
+            \end{pmatrix} = \\
+            = \begin{pmatrix}
+                  (v v^* + 1 - 2 v v^* + (v v^*)^2) & 0 \\
+                  0 & 1 - 2 v^* v + (v^* v)^2 + v^* v \\
+            \end{pmatrix} =
+            \begin{pmatrix}
+                1 & 0 \\
+                0 & 1 \\
+            \end{pmatrix}
+        \end{multline*}
+        Аналогічно перевіряємо для $u^* u$.
+        Нескаладно переконатись, що $u = w (w u)$, $w, (w u)$ - симетрії.
+        Звідси $u \in U^0_2(A)$, як добуток двох симетрій.
+        Рівність
+        \[
+            u \begin{pmatrix}
+                  p & 0 \\
+                  0 & 0
+            \end{pmatrix} u^* =
+            \begin{pmatrix}
+                q & 0 \\
+                0 & 0
+            \end{pmatrix}
+        \]
+        перевіряється безпосередньо.
+    \end{proof}
+\end{lemma}
+
+\subsection{Три основні резульати K-теорії}\label{subsec:три-основні-резульати--k-теорії}
+Результати цього параграфу є дуже важливими і містяться
+майже в усіх підручниках з К-теорії. Можна дивитись наприклад ([9], [10])
+
+\subsubsection{Функтор \widetilde{K_0}}
+Для довільної $C^*$ - алгебри A визначимо $\widetilde{K_0}(A)$.
+Нехай $\phi: \widetilde{A} \rightarrow \mathbb{C}$ - канонічний *-гомоморфізм.
+Тоді $\widetilde{K_0}(A) = \ker(\phi_*)$.
+Нескадно переконатись у тому, що $\widetilde{K_0}(A)$ є підгруппою в $K_0(A)$.
+Якщо $\phi$ -- *-гомоморфізм $C^*$ - алгебр, а $\widetilde{\phi}$ -- єдиний унітальний *-гомоморфізм, який
+продовжує $\phi$, то $\widetilde{\phi}_*(\widetilde{K_0}(A)) \subset \widetilde{K_0}(B)$.
+Отже звузивши $\widetilde{\phi)_*}$, ми отримаємо гомоморфізм $\phi_*$.
+Безпосередньою перевіркою можна впевнетись у тому, що ця конструкція задає коваріантний функтор:
+\begin{equation*}
+    A \rightarrow K_0(A), \phi \rightarrow \phi_*
+\end{equation*}
+
+%Частково впорядкованою групою називається пара $(G,\leq)$, де G - комутативна група, $\leq$ - частковий порядок на G.
+%При цьому множина $G^+ = \{x | x \beq 0$, така, що $G = G^+ - G^+$, і для будь якого
+%$z: x \leq y \implies x + z \leq y + z$.
+%Якщо G - комутативна група, а N - її підмножина, така, що $N+N \subset N, G = N-N, N \cap (-N) = {0}$, то N називається
+%конусом в G.
+%Якщо G - частково впорядкована группа, то $G^+$ - є конусом в G.
+Нехай A - унітальна $C^*$ - алгебра, з одиницею e.
+Тоді для $p \in P[A] \implies \tau(p) = 0 \implies [p]_{\widetilde{A}} \in \widetilde{K_0}(A)$.
+Далі, якщо $p \approx q$ відносно A, то $\exists n: e_n \oplus p \sim e_n \oplus q$, а отже $p \approx q$ і відносно
+$\widetilde{A}$.
+З цього випливає $[e_n] + [p] = [e_n \oplus p] = [e_n \oplus [q]] = [e_n] + [q]$, а отже $[p] = [q]$.
+
+Ми визначили гомоморфізм $K_0(A)^+ \rightarrow  \widetilde{K_0}(A), [p]_A \rightarrow [p]_{\widetilde{A}}$.
+Цей гомоморфізм однозначно продовджується до гомоморфізма $j_A: K_0(A) \rightarrow \widetilde{K_0}(A)$.
+Будемо називати $K_0$ природнім гомоморфізмом із $K_0(A)$ в $\widetilde{K_0}(A)$.
+
+Тепер доведемо, що $j_A$ є природнім ізоморфізмом функторів $K_0$ і $\widetilde{K_0}$.
+\begin{theorem}
+    $j_A$ є природнім ізоморфізмом функторів $ K_0 $ та $ \widetilde{K_0} $.
+    \begin{proof}
+        \begin{enumerate}
+            \item Нехай A - унітальна $C^*$ - алгебра , тоді $j_A$ є ізоморфізмом $ K_0(A) $ та $ \widetilde{K_0}(A) $.
+            Нехай e - одиниця A. Тоді відображення
+            \begin{equation*}
+                \psi: \widetilde{A} \rightarrow A, a \rightarrow e a e,
+            \end{equation*}
+            є унітальним *-гомоморфізмом, бо: $\psi(a + b) = e(a + b)e = eae + ebe = \psi(a) + \psi(b)$,
+            Нескладно перевірити, що для вкладення $j: \widetilde{K_0}(A) \rightarrow K_0(\widetilde{A})$
+            виконано $\psi_* j j_A = id, j_a \psi_* j = id$. Таким чином $j_a$ - бієкція, а комутативність діаграми --
+            очевидна.
+        \end{enumerate}
+    \end{proof}
+\end{theorem}
+
+\subsubsection{Слабка точність}
+\begin{definition}
+    Послідовність $G \xrightarrow{\tau} G' \xrightarrow{\rho} G''$ абелевих
+    груп називається точною, якщо $im(\tau) = \ker(\rho)$.
+    Послідовність
+    \begin{equation}
+        \label{eqn:short-exact-sequence}
+        0 \rightarrow G \xrightarrow{\tau} G' \xrightarrow{\rho} G'' \rightarrow 0
+    \end{equation}
+    називається короткою точною послідовністю, якщо $\tau$ - ін'єктивний, \\
+    $\rho$ - сюр'єктивний, а послідовність $G \xrightarrow{\tau} G' \xrightarrow{\rho} G''$ - точна.
+    Ми говоримо, що послідовність $\ref{eqn:short-exact-sequence}$ допускає
+    розщеплення, якщо існує гомоморфізм $\rho': G'' \rightarrow G'$ такий,
+    що $\rho \rho' = id_{G'}$.
+    У цьому випадку існює гомоморфізм $\tau' G' \rightarrow G$, такий, що
+    $\tau \tau' = id$ та $\tau \tau' + \pho' \pho = id$.
+    Отже відображення
+    \[
+        G' \rightarrow G \oplus G'', g \rightarrow (\tau'(g), \rho(g))
+    \]
+    є ізоморфізмом.
+    Будемо писати $lim_{\rightarrow} G_n$ коли можливо.
+\end{definition}
+
+Послідовність
+\[
+    \dots G_n \xrightarrow{\phi_n} G_{n+1} \xrightarrow{\phi_{n+1}} G_{n+2} \dots
+\]
+гомоморфізмів груп називається точною, якщо $im(\phi_n) = \ker(\phi_{n+1})$ для усіх n.
+
+\begin{remark}
+    Нехай A - деяка $C^*$ - алгебра і нехай $x \in \widetilde{K_0}(A)$.
+    Тоді знайдуться натуральне число n і проектор $p \in P[\widetilde{A}]$,
+    такі, що $x = [p] - [1_n]$, де $1$ - одиниця в $\widetilde{A}$.
+    \begin{proof}
+        x = [r] - [q], для деяких $r,q \in M_n(\widetilde{A})$, $x = [r] + [1_n - q] - [1_n] = [p] - [1_n]$,
+        де $p = r \oplus (1_n - q)$.
+    \end{proof}
+\end{remark}
+Наступна теорема доводить важливу властивість функтора $\widetilde{K_0}$, яка \\
+називається слабкою точністю.
+
+\begin{theorem}
+    \label{трм:слабка точність}
+    Нехай
+    \begin{equation*}
+        0 \rightarrow J \xrightarrow{j}  A \xrightarrow{\phi} B \rightarrow 0
+    \end{equation*}
+    коротка точна послідовність $C^*$ - алгебр і *-гомоморфізмів.
+    Тоді послідовність
+    \begin{equation*}
+        \widetilde{K_0}(J) \xrightarrow{j_*}  \widetilde{K_0}(A) \xrightarrow{\phi_*} \widetilde{K_0}(B)
+    \end{equation*}
+    є точною.
+    \begin{proof}
+        Можемо вважати, J - ідеал алгебри A, а j - вкладання.
+        З того, що $\phi j = 0$ випливає, що $\phi_* j_* = 0_* = 0$.
+        Тож $im(j_*) \subseteq \ker(\phi_*)$.
+        Доведемо зворотнє включення.
+        Нехай $x \in \ker(\phi_*)$, $x = [p] - [1_n]$ для деякого $p \in M_m(\widetilde{A})$
+        і деякого m >n.
+        Будемо позначати одиниці $\widetilde{J},\widetilde{A},\widetilde{B}$ символом 1.
+        Далі $0 = \phi_*(x) = \phi_*([p] - [1_n]) = \phi([p]) - \phi([1_n]) = [\phi(p)] - [1_n] \implies [\phi(p)] = 1_n$
+        Звідси існує натураліне k, таке, що
+        $1_k \oplus \phi(p) \sim 1_k \oplus 1_n \oplus 0_{m - n} = 1_{k+n} \oplus 0_{m - n}$ в $M_{k+m}(\widetilde{B})$.
+        З вищенаведеної леми випливає, що існує $v \in U_{2k + 2m}^0(\widetilde{B})$, такий, що
+        \begin{equation*}
+            1_{k+n} \oplus 0_{k + 2m - n} = v(1_k \oplus \phi(p) \oplus 0_{k + m})v^*
+        \end{equation*}
+        З наслідка $\ref{cor:1}$ випливає, що існує $u \in U_{2k+2m}^0(\widetilde{A}): v = \phi(u)$.
+        Нехай $r = u(1_k \oplus p \oplus 0_{k+m})u^*$.
+        Очевидно, що $r \in M_{2k+2m}(\widetilde{A})$ та r еквівалентно $1_k \oplus p \oplus 0_{k+m}$.
+        Так як, $\phi(r) = v(1_k \oplus \phi(p) \oplus 0_{k + m})v^* = 1_{k+n} \oplus 0_{k + 2m - n}$,
+        звідси випливає, що $r \in M_{2k + 2m}(\widetilde{J})$.
+        Легко бачити, що елемент $[r] - [1_{k+n}] \in K_0(\widetilde{\widetilde{J}})$ належить $\widetilde{K_0}(J)$.
+        Нарешті $j_*([r] - [1_{k+n}]) = [1_k \oplus p] - [1_{k+n}] = [p] - [1_n] = x$.
+        Звідси $x \in im(j_*)$, що остаточно дає $\ker(\phi_*) = im(j_*)$.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    Нехай $A_1, A_2$ - деякі $C^*$ - алгебри.
+    Тоді група $\widetilde{K_0}(A_1 \oplus A_2)$ \\
+    ізоморфна $\widetilde{K_0}(A_1) \oplus \widetilde{K_0}(A_2)$
+
+    \begin{proof}
+        Нехай $\phi_i: A_i \rightarrow A_1 \oplus A_2$, $\pi_i: A_1 \oplus A_2 \rightarrow A_i$.
+        Тоді
+        \begin{equation*}
+            0 \rightarrow A_1 \xrightarrow{\phi_1} A_1 \oplus A_2 \xrightarrow{\pi_2} A_2 \rightarrow 0
+        \end{equation*}
+        є короткою точною послідовністю.
+        Звідсі згідно з теоремою $\ref{трм:слабка точність}$ послідовність
+        \begin{equation*}
+            \widetilde{K_0}(A_1) \xrightarrow{\phi_{1*}} \widetilde{K_0}(A_1 \oplus A_2) \xrightarrow{\pi_{2*}} \widetilde{K_0}(A_2)
+        \end{equation*}
+        є точною.
+        З того, що $\pi_i \phi_i = id$ випливає, що $\pi_{i*} \phi_{i*} = id$, це значить,
+        що $\phi_{2*}$ - ін'єктивний, а $\pi_{i*}$ - сюр'єктивний.
+        Отже послідовність
+        \begin{equation*}
+            0 \rightarrow \widetilde{K_0}(A_1) \xrightarrow{\phi_{1*}} \widetilde{K_0}(A_1 \oplus A_2)
+            \xrightarrow{\pi_{2*}} \widetilde{K_0}(A_2) \rightarrow 0
+        \end{equation*}
+        допускає розщеплення.
+        Звідси випливає, що група $\widetilde{K_0}(A_1 \oplus A_2)$ ізоморфна \\ $\widetilde{K_0}(A_1) \oplus \widetilde{K_0}(A_2)$.
+    \end{proof}
+\end{theorem}
+
+\subsubsection{Гомотопічна інваріантність}
+
+\begin{definition}
+    Два *-гомоморфізма $\phi, \psi: A \rightarrow B$ між $C^*$ - алгебрами називаються гомотопними,
+    якщо для кожного $t \in [0,1]$ існує *-гомоморфізм $\phi_t: A \rightarrow B$, такий, що
+    $\phi_0 = \phi, \phi_1 = \psi$ і для усіх $a \in A$ відображення
+    \begin{equation*}
+    [0,1]
+        \rightarrow B, t \rightarrow \phi_t(a)
+    \end{equation*}
+    є неперевним.
+    Сімейство $(\phi_t)_{0 \leq t \leq 1}$ називається гомотопією, з'єднуючою $\phi$ та $\psi$.
+    Будемо писати $\phi \approx \psi$, якщо $\phi, \psi$ - гомотопні.
+    Відношення $\approx$ є відношенням еквівалентності на множині усіх *-гомоморфізмів із A в B.
+\end{definition}
+
+\begin{example}
+    Нехай J - замкнутий ідеал $C^*$ - алгебри A, нехай $a \in A_{sa}$.
+    Поклажемо $u = e^{ia}$ і позначимо через $\phi: J \rightarrow J$ звуження гомоморфізма $Ad$ u на J .
+    Тоді $\phi$ гомотопний тотожньому відображенню $id_J$ ідеала J .
+    Гомотопію $(\phi_t)_t$ можна отримати взявши за $\phi_t$ звуження $Ad e^{ita}$ на J для всіх $t \in [0,1]$.
+\end{example}
+
+\begin{lemma}
+    \label{лема:гомотопічна інваріантність}
+    Нехай $p,q$ - проектори з унітальної $C^*$ - алгебри і нехай $||q - p|| < 1$.
+    Тоді існує унітарний елемент u з A, такий, що $q = u^* p u$ і виконана нерівність
+    $||1 - u|| \leq \sqrt{2}||p - q|$. $u = v |v^{-1}|$, де $v = 1 - p - q + 2qp$ є шуканим елементом.
+
+    \begin{proof}
+        Нехай $v = 1 - p - q + 2qp$.
+        Нескадно переконатись в тому, що $v^* v= (1 - (q - p))^2$.
+        Крім того внаслідок того, що $v^* = 1 - p - q + 2pq$, ми маємо $v v^* = (1 - (q - p))^2$.
+        З цього елемент $v v^* = v^* v$, тобто елемент v нормальний.
+        Далі $||p - q|| < 1, ||(p-q)^2|| = ||p - q||^2 < 1$.
+        Звідси елемент $v v^* = 1 - (p-q)^2||$ має обернений,
+        а з цього і елемент v має обернений в наслідок своєї нормальності.
+        Елемент $u = v |v|^{-1}$ унітарний.
+        З того, що $vp = qp = qv$, випливає $pv^* = v^* q$ і $p v^* v = v^* q v = v^* v p$.
+        Звідси випливає, що p комутує з $|v|$ і отже з $|v|^{-1}$.
+        Таким чином $up = qu$ а звідси $q = u p u^*$.
+        З того, що $Re(v) = |v|^2$, випливає, що $Re(u) = Re(v)|v|^{-1} = |v|$.
+        Тоді
+        \begin{equation*}
+            ||1 - u||^2 = ||(1 - u)(1 - u^*)|| = 2 ||1 - Re(u)|| = 2||1-|v||| \leq 2||1-|v|^2||
+        \end{equation*}
+        З того, що нерівність $1 - t \leq 1 - t^2$ виконується для усіх $t \in [0,1]$).
+        З \\
+        співвідношення $1 - |v|^2 = (q-p)^2$ випливає, що $||1 - u||^2 \leq 2||(q - p)||^2$.
+        Нарешті $||1 - u|| \leq \sqrt{2} ||q - p||$.
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}
+    \label{теорема: гомотопічна інваріантність К0}
+    Нехай $\phi, \psi: A \rightarrow B$ - гомотопні *-гомоморфізми $C^*$ - алгебр A і B .
+    Тоді $\phi_* = \psi_*: \widetilde{K_0}(A) \rightarrow \widetilde{K_0}(B)$.
+
+    \begin{proof}
+        Якщо $(\phi_t)$ - гомотопія між $\phi$ та $\psi$, то, як легко бачити $(\widetilde{\phi_t})$ -
+        гомотопія між $\widetilde{\phi}$ та $\widetilde{\psi}$ і при цьому усі $\widetilde{\phi_t}$ - унітальні.
+        Таким чином достатньо показати, що $\phi_* = \psi_*: K_0(A) \rightarrow K_0(B)$ у припущенні, що A, B - унітальні
+        і існує гомотопія $(\phi_t)$ між $\widetilde{\phi}$ та $\widetilde{\psi}$, для якої усі $\widetilde{\phi_t}$ - унітальні.
+        Нехай p - проектор із $M_n(A)$ і $p_t = \phi_t(t)$.
+        Тоді відображення
+        \begin{equation*}
+        [0,1]
+            \rightarrow B, t \rightarrow p_t
+        \end{equation*}
+        рівномірно неперервне.
+        Отже існує розбиття $0 = t_0 < t_1 < \dots < t_m = 1$ відрізка $[0,1]$ таке, що
+        $||p_{t_j} - p_{t_{j+1}}|| < 1 (0 \leq j < m)$.
+        Тоді, згідно з лемою $\ref{лема:гомотопічна інваріантність}$, $p_{t_j}$ i $p_{t_{j+1}}$ - унітарно еквівалентні,
+        тому $p_{t_j} \sim p_{t_{j+1}}$ і звідси $\phi(p) = \psi(p)$.
+        З цього випливає, що $\phi_*([p]) = \psi_*([p])$, а з того, що p - довільний елемент $P[A]$ отримаємо, що
+        $\phi_* = \psi_*$
+    \end{proof}
+\end{theorem}
+
+\subsubsection{Прямі границі}
+\begin{definition}
+    Нехай $(G_n)_{n=1}^{\infty}$ - послідовність груп, така, що для кожного n задан гомоморфізм $\tau_n: G_n \rightarrow G_{n+1}$.
+    Тоді ми називаємо $(G_n, \tau_n)_{n=1}^{\infty}$ прямою послідовністю груп.
+    Покладемо $\tau_{nn} = id_{G_n}$, $\tau_{nm}: G_n \rightarrow G_m$ при $n \leq m$ індукцією по m, поклавши $\tau_{n,m+1}=\tau_m \tau_{n, m}$.
+    Очевидино, що $\tau_{nk} = \tau_{mk} \tau{nm}$ за $n \leq m \leq k$.
+\end{definition}
+
+Нехай G' - група, а $\rho^n: G_n \rightarrow G'$ - гомоморфізми, такі, що діаграма
+\begin{equation*}
+    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAHEB9QgX1PUy58hFAEZyVWoxZsuwMAGpRPEHwHY8BIuNGT6zVog4ByVZJhQA5vCKgAZgCcIAWyTiQOCEgBM1fTKMAHUCHAAsIAD15JRU1EEcXJDIPL0RfEAY6ACMYBgAFQU0RDJg7HBBqHDosBjZIMFY-aUMQYLDI3n54p1dEZM83akyc-MLhNgZS8qaDNmCqpm4zHiA
+    \begin{tikzcd}
+        G_n \arrow[rd, "\rho^n"] \arrow[r, "\tau_n"] & G_{n+1} \arrow[d, "\rho^{n+1}"] \\
+        & G'
+    \end{tikzcd}
+\end{equation*}
+комутативна для усіх n, тобто $\rho^n = \rho^{n+1}\tau_n$.
+Тоді $\rho^n = \rho^{m}\tau_{nm}$, для усіх $m \geq n$.
+Добуток $\prod_{k=1}^{\infty} G_k$ є групою з покординатним множенням.
+Нехай G' - множина усіх елементів $(x_k)_k$ з $\prod_{k=1}^{\infty} G_k$,
+таких, що існує $x_{k+1} = \tau_k(x_k)$ для усіх $k \ged N$.
+Тоді G' є нормальною підруппою в $\prod_{k=1}^{\infty} G_k$.
+Позначимо через $e_k$ одиницю групи $G_k$.
+Множина F таких $(x_k)_k \in \prod_{k=1}^{\infty} G_k$, що (x_k) = e_k при $k \geq N$ є нормальною підгрупою G'.
+Позначимо через G фактогрупу $G' / F$.
+Ця група називається прямою границею послідовності $(G_n, \tau_n)$.
+
+Якщо $x \in G_n$ то позначимо через $\widetilde{\tau}^n(x)$ послідовність $(x_k)$, де $x_k = e_k$ для
+$k < n$ і $x_{n+k} = \tau_{n n+k}(x)$ для $k \geq 0$.
+Тоді $\widetilde{\tau}^n(x) \in G'$ і відображення
+\begin{equation*}
+    \tau^n: G_n \rightarrow G', x \rightarrow \widetilde{\tau}^n(x)
+\end{equation*}
+є гомоморфізмом груп який називається природнім гомоморфізмом із $G_n$ в G.
+Безпосередньо перевіряється, що діаграма
+\begin{equation*}
+    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAHEB9QgX1PUy58hFAEZyVWoxZsuwMAGpRPEHwHY8BIuNGT6zVog4ByVZJhQA5vCKgAZgCcIAWyRkQOCEgBM1fTKMAHUCcOiYAPV5+EEcXJHEPL0RfKQM2YNCI+SUVNRinV0R3T3i-aUMQDLDIsx4gA
+    \begin{tikzcd}
+        G_n \arrow[rd, "\tau^n"] \arrow[r, "\tau_n"] & G_{n+1} \arrow[d, "\tau^{n+1}"] \\
+        & G'
+    \end{tikzcd}
+\end{equation*}
+комутативна для кожного n і є об'єднанням зростаючої послідовності $\tau^n(G_n)_{n=1}^{\infty}$
+
+\begin{theorem}
+    Нехай G - пряма границя послідовності груп $(G_n, \tau_n)_{n=1}^{\infty}$ і нехай $\tau^n: G_n \rightarrow G$ -
+    природній гомоморфізм для кожного n.
+    \begin{enumerate}
+        \item Якщо $x \in G_n, y \in G_m$, при чому $\tau^n(x) = \tau^m(y)$, то існує $k \geq m,n$, таке, що
+        $\tau_{nk}(x) = \tau_{mk}(y)$.
+        \item Нехай G' - деяка група і для кожного n задан гомоморфізм $\rho^n: G_n \rightarrow G'$, такий, що
+        діаграма:
+        \begin{equation*}
+            \begin{tikzcd}
+                G_n \arrow[rd, "\rho^n"] \arrow[r, "\tau_n"] & G_{n+1} \arrow[d, "\rho^{n+1}"] \\
+                & G'
+            \end{tikzcd}
+        \end{equation*}
+        такий, що діаграма комутативна.
+        Тоді існує єдиний гомоморфізм $\rho: G \rightarrow G'$, такий, що діаграма:
+        \begin{equation*}
+            \begin{tikzcd}
+                G_n \arrow[rd, "\rho^n"] \arrow[r, "\tau^n"] & G \arrow[d, "\rho"] \\
+                & G'
+            \end{tikzcd}
+        \end{equation*}
+        комутативна.
+    \end{enumerate}
+
+    \begin{proof}
+        1) безпосередньо випливає з визначень.
+
+        2) Нехай G' і $\rho_n$ задовільняють умові (2).
+        Якщо x належить $G_n$ і y належить $G_m$, а $\tau^n(x) = \tau^m(y)$.
+        З цього випливає, що знайдеться $k \geq m,n$ таке, що $\rho^n(x) = \rho^k\tau_{nk}(x) = \rho^k \tau_{mk}(y) = \rho^m(y)$.
+        Таким чином поклав $\rho(\tau^n(x)) = \rho^n(x)$ ми задаємо коректно визначене відображення $G \rightarrow G'$.
+        Легко бачити, що $\rho$ є гомоморфізмом і згідно визначенню $\rho \tau^n = \rho^n$ для всіх n.
+        Єдинисть $\rho$ очевидна.
+    \end{proof}
+\end{theorem}
+
+\begin{remark}
+    В силу твердження 1) попередньої теореми, якщо $\tau^n(x) = e$, випливає, що знайдеться $k \geq n$, таке, що
+    $\tau_{nk} = e$(символом e позначена одиниця відповідної групи).
+\end{remark}
+
+\begin{definition}
+    Нехай A - довільна *-алгебра.
+    Під $C^*$- напівнормою \\
+    називається відображення $p: A \rightarrow \mathbb{R}$, таке, що виконується \\
+    $p(ab) \leq p(a)p(b), p(a^*) = p(a), p(a^* a) = p(a)^2$.
+    Якщо крім того $C^*$ напівнорма є нормою, то ми називаєм її $C^*$ нормою.
+\end{definition}
+Нехай $\phi: A \rightarrow B$ деякий гомоморфізм із *-алгебри в $C^*$ - алгебру.
+Тоді функція
+\begin{equation*}
+    p: A \rightarrow \mathbb{R}^+, a \rightarrow ||\phi(a)||
+\end{equation*}
+є $C^*$ напівнормою на A, якщо ж $\phi$ - ін'єктивний, то p є $C^*$-нормою.
+Якщо p - деяка напівнорма на *-алгебрі A, то множина $N = p^{-1}(0)$ є самоспряженим ідеалом в A .
+Рівність $||a + N|| = p(a)$ задає $C^*$-норму на факторалгебрі $A / N$.
+Позначимо через B попопвнення $A / N$ по цій нормі.
+Нескадно перевірити, що множення і інволюцію можна продожити і при цьому єдиним чином, так, щоб B була $C^*$-алгеброю.
+Ми будемо називати B обгортаючою алгеброю пари (A, p).
+А відображення
+\begin{equation*}
+    i: A \rightarrow B, a \rightarrow a + N
+\end{equation*}
+будемо називати канонічним відображенням із A в B .
+Очевидно $i(A)$ - є щільною *-підалгеброю в B .
+
+Якщо p - $C^*$ норма, то B називається просто поповненням A .
+У цьому випадку A - є щільною *-підалгеброю в B .
+
+\begin{definition}
+    Нехай $(A_n)_{n=1}^{\infty}$ - послідовність $C^*$ - алгебр, така, що для кожного n задан гомоморфізм $\phi_n: A_n \rightarrow A_{n+1}$.
+    Тоді ми називаємо $(A_n, \phi_n)_{n=1}^{\infty}$ прямою послідовністю $C^*$ - алгебр.
+    Добуток $\prod_{k=1}^{\infty} A_k$ є *-алгеброю \\
+    з покординатними алгебраїчними операціями.
+    Нехай A' - множина усіх \\ елементів $(a_k)_k$ з $\prod_{k=1}^{\infty} A_k$,
+    таких, що існує $a_{k+1} = \phi_k(a_k)$ для усіх $k \geq N$.
+    Тоді A' є *-підалгеброю в $\prod_{k=1}^{\infty} A_k$.
+    Зазначимо, що $||a_k|| \leq ||a_{k+1}||$, якщо $k \geq N$(бо $\phi_k$ не збільшує норми).
+    З цього послідовність $(||a_k||)_k$ незростає і обмежена знизу.
+    Покладемо $p(a) = \lim_{k \to \infty} ||a_k||$.
+    Нескладно перевірити, що
+    \begin{equation*}
+        p: A' \rightarrow \mathbb{R}, a \rightarrow p(a)
+    \end{equation*}
+    є $C^*$ - напівнормою на A'.
+    Ми позначаємо обертаючу $C^*$ - алгебру пари (A',p) через A і називаємо її прямою границею послідовності алгебр $(A_n, \phi_n)$.
+\end{definition}
+
+Так само, як і у випадку груп, через $\hat{\phi}^n(a)$ послідовність із $A'$,
+у якій перші $n-1$ членів - нульові, а $a_{n+k} = \phi_{n n+k}(a)$.
+Нехай $i: A' \rightarrow A$ - канонічний гомомморфізм.
+Тоді відображення
+\begin{equation*}
+    \phi^n: A_n \to A, a \to i(\hat{\phi}^n(a))
+\end{equation*}
+є *-гомоморфізмом.
+Безпосередньо перевіряться, що діаграма
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAHEB9QgX1PUy58hFAEZyVWoxZsuwMAGpRPEHwHY8BIuNGT6zVog4ByVZJhQA5vCKgAZgCcIAWyRkQOCEgBM1fTKMAHUCcOiYAPV5+EEcXJHEPL0RfKQM2YNCI+SUVNRinV0R3T3i-aUMQDLDIsx4gA
+\begin{equation*}
+    \begin{tikzcd}
+        A_n \arrow[rd, "\phi^n"] \arrow[r, "\phi_n"] & A_{n+1} \arrow[d, "\phi^{n+1}"] \\
+        & A
+    \end{tikzcd}
+\end{equation*}
+є комутативною, а об'єднання зростаючої послідовності $C^*$-алгебр $(\phi^n(A_n))$ є щільною $C^*$ - підалгеброю
+в A, крім того
+\begin{equation*}
+    ||\phi^n(a)|| = \lim_{k \to \infty} ||\phi_{n n+k}(a)||
+\end{equation*}
+
+\begin{theorem}
+    Нехай дана послідовність $C^*$ - алгебр $(A_n, \phi_n)$, нехай A - пряма границя цієї послідовності.
+    Далі нехай $\phi^n: A_n \to A$ - природній гомоморфізм для кожного n.
+    Тоді
+    \begin{enumerate}
+        \item Якщо $a \in A_n$, $b \in A_m$, $\epsilon > 0$, $\phi_n(a) = \phi_m(b)$, тоді знайдеться номер $k \geq n,m$
+        таке, що $||\phi_{nk} - \phi_{mk}|| \leq \epsilon$.
+        \item Нехай B - деяка $C^*$ - алгебра.
+        І нехай для кожного n задан гомоморфізм $\psi_n$ для якого діаграма
+        \begin{equation*}
+            \begin{tikzcd}
+                A_n \arrow[rd, "\psi_n"] \arrow[r, "\phi_n"] & A_{n+1} \arrow[d, "\psi_{n+1}"] \\
+                & A
+            \end{tikzcd}
+        \end{equation*}
+        комутативна.
+        Тоді існує єдиний гомоморфізм $\psi$ для якого діаграма
+        \begin{equation*}
+            \begin{tikzcd}
+                A_n \arrow[rd, "\psi_n"] \arrow[r, "\phi^n"] & A \arrow[d, "\psi"] \\
+                & B
+            \end{tikzcd}
+        \end{equation*}
+        комутативна.
+%        \begin{proof}
+%            TODO
+%        \end{proof}
+    \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+    Зберігаючи позначення минулої теореми оберемо елемент $a \in A_n$, такий, що $\phi^n(a) = 0$ і $\epsilon > 0$.
+    Тоді в силу твердження $(1)$ знайдеться номер $k \geq n$, для якого $||\phi_{nk}|| \leq \epsilon$.
+\end{remark}
+
+\begin{theorem}
+    Пряма границя простих $C^*$ - алгебр є простою $C^*$ - алгеброю.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+\subsubsection{Неперервність $K_0$}
+\begin{lemma}
+    Нехай A - пряма границя послідовності $C^*$ - алгебр $(A_n, \phi_n)$
+    і B - пряма границя відповідної послідовності $M_k(A_n), \phi_n$ для деякого фіксованого натурального k.
+    Для кожного n позначимо $\phi^n: A_n \to A$, $\psi^n: M_k(A_n) \to B$ природні *-гомоморфізми.
+    Тоді існує єдиний *-ізоморфізм  $\pi: B \to M_k(A)$, такий, що діаграма
+    \begin{equation*}
+        \begin{equation*}
+            \begin{tikzcd}
+                M_k(A_n) \arrow[rd, "\phi^n"] \arrow[r, "\psi^n"] & B \arrow[d, "\pi"] \\
+                & M_k(A)
+            \end{tikzcd}
+        \end{equation*}
+    \end{equation*}
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{lemma}
+
+Пряма послідовність $C^*$ - алгебр $(A_n, \phi_n)_{n=1}^{\infty}$ називається унітальною, якщо всі $A_n$ - унітальні
+і всі $\phi_n$ - унітальні.
+В цьому випадку унітальна алгебра $A = \varinjlim A_n$ і всі природні *-гомоморфізми.
+
+\begin{lemma}
+    Нехай A - пряма границя унітальної послідовності $C^*$ - алгебр $(A_n, \phi_n)_{n=1}^{\infty}$.
+    і нехай $\phi^n$ - природнє відображення.
+    \begin{enumerate}
+        \item Для всякого проектора $p \in A$ існує натуральне n і проектор $q \in A_n$ такі,
+        що p і $\phi_n(q)$ - унітарно еквівалентні в A .
+        \item Нехай n - фіксовано і нехай $p, q$ - проектори із $A_n$, такі, що $\phi^n(p) \sim \phi^n(q)$ в A.
+        Тоді знайдеться натуральне $m \geq n$, таке, що $\phi_{nm}(p) \eq \phi_{nm}(q)$ в $A_m$.
+    \end{enumerate}
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{lemma}
+
+Наступна теорема стверджує неперервність функтора $K_0$.
+Це означає, \\ наступне: якщо $A = \varinjlim A_n$ , де $(A_n, \phi_n)_{n=1}^{\infty}$ унітальна послідовність $C^*$ - алгебр,
+то $K_0(A) = \varinjlim K_0(A_n).$
+
+\begin{theorem}
+    Нехай A - пряма границя послідовності $C^*$ - алгебр $(A_n, \phi_n)_{n=1}^{\infty}$ і
+    G - пряма границя послідовності $(K_0(A_n), \phi_{n*})_{n=1}^{\infty}$ абелевих груп.
+    Нехай $\phi^n: A_n \rightarrow A, \tau^n$ - природні відображення у $A, G$ відповідно.
+    Тоді існує єдиний ізоморфізм $\tau$, такий, що діаграма
+    \begin{equation*}
+        \begin{tikzcd}
+            K_0(A_n) \arrow[rd, "\phi_*^n"] \arrow[r, "\tau^n"] & G \arrow[d, "\tau"] \\
+            & K_0(A)
+        \end{tikzcd}
+    \end{equation*}
+
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+\subsubsection{Неперервність $\widetilde{K_0}$}
+Наведемо необхідні твердження про додану одиницю і прямі границі.
+\begin{remark}
+    Нехай A - пряма границя посл. $C^*$-алгебр $(A_n, \phi_n)_{n=1}^{\infty}$. \\
+    Тоді $\widetilde{A} = \varinjlim \widetilde{A_n}$.
+    Сформулюємо це точніше.
+    Нехай B - пряма границя \\
+    послідовності $C^*$ - алгебр $(\widetilde{A_n}, \widetilde{\phi_n})_{n=1}^{\infty}$
+    і нехай $\phi^n: A_n \to A$, $\psi^n: \widetilde{A_n} \to A$ природні відображення.
+    Тоді існує єдиний *-ізоморфізм $\phi: B \rightarrow \widetilde{A}$, такий, що діаграма
+    \begin{equation*}
+        \begin{tikzcd}
+            K_0(A_n) \arrow[rd, "\widetilde{\phi}^n"] \arrow[r, "\psi^n"] & B \arrow[d, "\phi"] \\
+            & \widetilde{A}
+        \end{tikzcd}
+    \end{equation*}
+    комутативна для кожного n.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{remark}
+
+\begin{lemma}
+    Нехай A - пряма границя послідовності $C^*$ - алгебр $(A_n, \phi_n)_{n=1}^{\infty}$.
+    Нехай G - пряма границя послідовності абелевих груп $(K_0(\widetilde{A_n}), \phi_{n*})_{n=1}^{\infty}$
+    і нехай $\phi^n: A_n \to A, \tau^n: K_0(\widetilde{A_n}) \to G$ - природні відображення.
+    Тоді існує єдиний ізоморфізм $\tau: G \to K_0(\widetilde{A})$, такий, що для кожного n діаграма
+    \begin{equation*}
+        \begin{tikzcd}
+            K_0(\widetilde{A_n}) \arrow[rd, "\widetilde{\phi}^n_*"] \arrow[r, "\tau^n"] & G \arrow[d, "\tau"] \\
+            & K_0(\widetilde{A})
+        \end{tikzcd}
+    \end{equation*}
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{lemma}
+
+\begin{theorem}
+    Нехай A - пряма границя послідовності $C^*$ - алгебр $(A_n, \phi_n)_{n=1}^{\infty}$.
+    Нехай G - пряма границя послідовності абелевих груп $(\widetilde{K_0}(A_n), \phi_{n*})_{n=1}^{\infty}$
+    і нехай $\phi^n: A_n \to A, \tau^n: \widetilde{K_0}(A_n) \to G$ - природні відображення.
+    Тоді існує єдиний ізоморфізм $\tau: G \to \widetilde{K_0}(A)$, такий, що для кожного n діаграма
+    \begin{equation*}
+        \begin{tikzcd}
+            \widetilde{K_0}(A_n) \arrow[rd, "\phi^n_*"] \arrow[r, "\tau^n"] & G \arrow[d, "\tau"] \\
+            & \widetilde{K_0}(A)
+        \end{tikzcd}
+    \end{equation*}
+    комутативна.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+\subsection{Стабільність}\label{subsec:стабільність}
+
+\subsubsection{Тензорні добутки}
+Нехай H,K - лінійні простори.
+Через $H \otimes K$ ми будемо позначати алгебраїчний тензорний добуток.
+Він є лінійною оболонкою елементів виду $x \otimes y, x \in H, y \in K$.
+Тензорні добутки дуже корисні і одна з причин - вони дозволяють заміняти білінійні відоюраження лінійними.
+А саме: якщо $\phi: H \times K \to L$ білінійне відображення, то існує єдине лінійне відображення $\phi': H \otimes K \to L$,
+таке, що $\phi'(x \otimes y) = \phi(x,y)$.
+
+Якщо $\tau, \rho$ - лінійні функціонали на лінійних просторах $H,K$ відповідно, то існує єдиний лінійний функціонал
+$\tau \otimes \pho$ на $H \otimes K$, такий, що
+\begin{equation*}
+    (\tau \otimes \rho)(x \otimes y) = \tau(x)\rho(y),
+\end{equation*}
+оскільки функція $H \times K \to \mathbb{C}, (x,y) \to \tau(x)\rho(y)$ білінійна.
+
+Припустимо, що $\sum_{i=1}^n x_i \otimes y_i = 0, x_i \in K, y_j \in K$, а $y_i$ - лінійно незалежні, тоді
+$x_1 = \dots = x_n = 0$.
+Дійсно, існують такі функціонали $\rho_j K \to \mathbb{C}, \rho_j(y_i) = \delta_{ij}$(символ Кронекера).
+Якщо $\tau$ - лінійний фукнціонал $H \to C$, то
+\begin{equation*}
+    0 = (\tau \otimes \rho_j)(\sum_{i=1}^n x_i \otimes y_i) = \sum_{i=1}^n \tau(x_i) \rho_j(y_j) = \tau(x_j).
+\end{equation*}
+Звідси $\forall \tau, \forall j, \tau(x_j) = 0$ звідси $x_1 = \dots = x_n = 0$.
+
+Нехай $v: K \to K'$, $u: H \to H'$ - лінійні відображення між лінійними просторами.
+Тоді існує єдине лінійне відображення
+\begin{equation*}
+    u \otimes v: H \otimes K \to H' \otimes K'
+\end{equation*}
+таке, що $(u \otimes v)(x \otimes y) = u(x) \otimes v(y)$, для всіх $x \in H, y \in K$.
+
+Відображення $(u,v) \to u \otimes v$ - білінійне.
+
+Якщо $H, K$ - нормовані простори, то взагалі кажучи існує більше однієї норми на $H \otimes K$.
+
+\begin{lemma}
+    Якщо $A,B$ - алгебри, то існує єдиний добуток в $A \otimes B$, для якого
+    \begin{equation*}
+        (a \otimes b)(a' \otimes b') = aa' \otimes bb'
+    \end{equation*}
+    \begin{proof}
+        Нехай $L_a$ - оператор лівого добутку на a.
+        Нехай X - простір усіх лінійнийх операторів в просторі $A \otimes B$.
+        Якщо $a \in A,b \in B$, то $L_a \otimes L_b \in X$, і отже відображення
+        \begin{equation*}
+            A \times B \to X, (a,b) \to L_a \otimes L_b
+        \end{equation*}
+        - білінійне.
+        Звідси існує єдине лінійне відображення $M: A \otimes B \to X$, таке,
+        що $M(a \otimes b) = L_a \otimes L_b$ для всіх $a,b$.
+        Білінійне відображення
+        \begin{equation*}
+            (A \otimes B)^2 \to A \otimes B, (c,d) \to cd = M(c)(d)
+        \end{equation*}
+        є шуканим єдиним добутком в $A \otimes B$.
+    \end{proof}
+    Простір наділений таким добутком називається тензорним \\ добутком алгебр.
+\end{lemma}
+
+\begin{lemma}
+    Нехай A,B - *-алгебри, тоді існує єдина інволюція, така, що $(a \otimes b)^* = (a^* \otimes b^*)$
+    \begin{proof}
+        Покажемо, що
+        \begin{equation*}
+            \sum_{i=1}^n a_i \otimes b_i = 0 \implies \sum_{i=1}^n a_i^* \otimes b_i^* = 0
+        \end{equation*}.
+        Оберемо в B елементи $c_1, c_2, \dots, c_m$ лінійна оболонка яких співпадає з лінійною оболонкою $b_1, \dots, b_n$.
+        Тоді $b_j = \sum_{i=1}^m \lambda_{ij}c_i$.
+        Так як $\sum_{i=1}^n a_i \otimes b_i = 0 = \sum_{i,j}^n \lambda_{ij} a_i \otimes c_j$.
+        Звідси $\sum_i \lambda_{ij} a_i = 0$ для $j = 1,\dots, m$.
+        Тоді $\sum_i \overline{\lambda_{ij}}a_i^* = 0$.
+        А звідси
+        \begin{multline*}
+            \sum_{i=1}^n a_i^* \otimes b_i^* = 0 =
+            \sum_{i=1}^n \sum_{j=1}^m \overline{\lambda_{ij}} a_i^* \otimes c_j^* =
+            \sum_{j=1}^m (\sum_{i=1}^n  \overline{\lambda_{ij}} a_i^*) \otimes c_j^* =
+            \sum_{j=1}^m 0 \otimes c_j^* =
+            0
+        \end{multline*}
+        Твердження леми очевидно випливає з вищедоведеного.
+    \end{proof}
+\end{lemma}
+
+Якщо *-алгебри $A', B''$ містять в собі *-підалгебри $A,B$ ,то можна розглядати $A \otimes B$, як *-підалгебру $A' \otimes B'$.
+
+\begin{remark}
+    Нехай $\phi: A \to C, \psi: B \to C$ деякі гомоморфізми *-алгебр $A,B$ в *-алгебру C, такі,
+    що для кожного елемента з $\phi(A)$ він комутує із елементом з $\phi(B)$.
+    Тоді існує єдиний *-гомоморфізм $\pi: A \otimes B \to C$,такий, що
+    \begin{equation*}
+        \pi(a \otimes b) = \phi(a)\psi(b)
+    \end{equation*}
+    \begin{proof}
+        Відображення
+        \begin{equation*}
+            A \times B \to C, (a,b) \to \phi(a)\psi(b)
+        \end{equation*}
+        є білінійним.
+        Індуковане ним відображення очевидно задовільняє необхідним властивостям.
+    \end{proof}
+\end{remark}
+
+\begin{definition}
+    Зображенням $C^*$ - алгебри називається пара $(H, \phi)$, де H - деякий гільбертів простір, а $\phi: A \to B(H)$ деякий *-гомоморфізм. \\
+    Називатимемо зображення точним(вірним), якщо $\phi$ - ін'єктивний.
+
+    Якщо $(H_{\lambda}, \phi_{\lambda})_{\lambda \in \Lambda}$ - сімейство зображень $C^*$ - алгебри A,
+    то їх прямою сумою називають зображення $(H, \phi)$, яке задається співвідношеннями
+    $H = \oplus_{\lambda} H_{\lambda}, \phi(a)((x_{\lambda})_{\lambda}) = (\phi_{\lambda}(a)(x_{\lambda}))_{\lambda}$.
+    Якщо для довільного елемента $a \neq 0 \in A$ існує $\lambda: \phi_{\lambda}(a) \neq 0$ - то $(H, \phi)$ - точне.
+\end{definition}
+Кожному додатньому лінійному функціоналу $\tau$ на $C^*$ - алгебрі $A$ можна поставити у відповідність деяке зображення.
+Покладемо
+\begin{equation*}
+    N_{\tau} = \left\{ a \in A | \tau(a^* a) = 0 \right\}
+\end{equation*}
+Можна перевірити, що $N_\tau$ - замкнутий лівий ідеал в A, і що відображення
+\begin{equation*}
+    (A / N_\tau)^2 \to \mathbb{C}, (a + N_\tau, b + N_\tau) \to \tau(b^* a)
+\end{equation*}
+коректно задає скалярний добуток на $A / N_\tau$.
+Позначимо через $H_\tau$ гільбертово поповнення простору $A \ N_\tau$.
+Для $a \in A$ визначимо оператор $\phi(a) \in B(A / N_\tau)$ таким чином:
+\begin{equation*}
+    \phi(a)(b + N_\tau) = ab + N_\tau
+\end{equation*}
+Вірна нерівність $||\phi(a)|| \leq ||a||$; дійсно, $||\phi(a)(b+ N_\tau)||^2 = \tau(b^*a^*ab) \leq ||a||^2 \tau(b^* b) = ||a||^2 ||b + N_\tau||^2$.
+Оператор $\phi(a)$ однозначним чином продовжується до оператора $\phi_\tau(a)$ в $H_\tau$.
+Відображення
+\begin{equation*}
+    \phi_\tau: A \to B(H_\tau), a \to \phi_\tau(a)
+\end{equation*}
+є *-гомоморфізмом.
+
+Це зображення називається зображенням Гельфанда-Наймарка-Сєгала
+
+Якщо алгебра A - ненульова, то її універсальне зображення визначимо, як пряму суму усіх зображєнь $(H_\tau, \phi_\tau)$,
+де $\tau$ пробігає усі $S(A)$.
+
+\begin{theorem}
+    Нехай $(H,\phi),(K, \psi)$ - зображення відповідно *-алгебр $A,B$.
+    Тоді існує єдиний *-гомоморфізм $\pi: A \otimes B \to B(H \otimes^. K)$, такий, що
+    \begin{equation*}
+        \pi(a \otimes b) = \phi(a) \otimes^. \psi(b) (a \in A, b \in B).
+    \end{equation*}
+    Крім того, якщо $\phi, \psi$ - ін'єктивні, то $\pi$ також ін'єктивний.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+Нехай A і B - деякі $C^*$ - алгебри і нехай $(H,\phi),(K, \psi)$ їх універсальні \\ зображення.
+В силу попередньої теореми існує єдиний ін'єктивний гомоморфізм $\pi: A \otimes B \to B(H \otimes^. K)$,
+таке, що $\pi(a \otimes b) = \phi(a) \otimes^. \psi(b)$.
+Отже функція
+\begin{equation*}
+    ||.||_*: A \otimes B \to \mathbb{R}^+, c \to ||\pi(c)||
+\end{equation*}
+є $C^*$ - нормою на $A \otimes B$.
+Поповнення $C^*$ - алгебри $A \otimes B$ відносно норми $||.||_*$ називається просторовим тензорним добутком A і B і
+позначається через $A \otimes B$.
+
+\subsubsection{Компактні оператори}
+
+Опертор u називається компактним, якщо $u(S)$ - відносно-компактна \\ множина (замикання - компакт).
+Множину усіх компактних операторів \\ на банаховому просторі X будемо позначати через $K(X)$.
+
+\subsubsection{Стабільність}
+Нехай A - деяка $C^*$ - алгебра.
+Тоді відображення
+\begin{equation*}
+    \aleph: A \to M_2(A), a \to \begin{pmatrix}
+                                    a & 0 \\
+                                    0 & 0 \\
+    \end{pmatrix}
+\end{equation*}
+будемо називати вкладенням A в $M_2(A)$.
+У випадку невизначеності будемо писати $\aleph^A$.
+
+\begin{remark}
+    Якщо A - унітальна $C^*$ - алгебра, то довільний елемент із $ \widetilde{K_0}(A) $ може бути записаний у вигляді
+    $x = [p]_{\widetilde(A)} - [q]_{\widetilde(A)}$, де $p, q \in P[A]$ .
+    Більше того можна вважати, що $q = (1_A)_n$ для деякого n.
+    Це випливає із існування природного ізоморфізма $ K_0(A) $ та $ \widetilde{K_0}(A) $ .
+\end{remark}
+
+\begin{theorem}
+    Нехай A - унітальна $C^*$ - алгебра і нехай $\aleph$ - вкладення A в $M_2(A)$.
+    Тоді $\aleph_*: \widetilde{K_0}(A) \to \widetilde{K_0}(M_2(A))$ є ізоморфізмом.
+
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+\begin{remark}
+    Якщо A - деяка $C^*$ - алгебра, а $i: A \to \widetilde{A}$ та $\rho: \widetilde{A} \to \mathbb{C}$ - вкладення і
+    факторвкладення відповідно, то коротка послідовність
+    \begin{equation*}
+        0 \to \widetilde{K_0}(A) \xrightarrow{i_*} \widetilde{K_0}(\widetilde{A}) \xrightarrow{\rho_*} \widetilde{K_0}(\mathbb{C}) \to 0
+    \end{equation*}
+    є точною.
+
+    \begin{proof}
+        Твердження випливає з того, що $ \widetilde{K_0} $ та $ K_0 $ ізоморфні для унітальних алгебр та того факту, що
+        послідовність
+        \begin{equation*}
+            0 \to \widetilde{K_0}(A) \xrightarrow{j} K_0(\widetilde{A}) \xrightarrow{\rho_*} \widetilde{K_0}(\mathbb{C}) \to 0
+        \end{equation*}
+        точна.(j позначає вкладення)
+    \end{proof}
+\end{remark}
+
+\begin{theorem}
+    Нехай A - деяка $C^*$ - алгебра і нехай $\aleph$ - вкладення A в $M_2(A)$.
+    Тоді $\aleph_*: \widetilde{K_0}(A) \to \widetilde{K_0}(M_2(A))$ є ізоморфізмом.
+
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+Нехай A - деяка $C^*$ - алгебра, H - гільбертів простір.
+p - одновимірний проектор із $K(H)$.
+Тоді відображення
+\begin{equation*}
+    \phi: A \to K(H) \otimes A, a \to p \otimes a
+\end{equation*}
+є *-гомоморфізмом.
+Позначимо $\phi_*: \widetilde{K_0}(A) \to \widetilde{K_0}(K(H) \otimes A)$ через $p_*$.
+Якщо q - інший одновимірний проектор, то існує унітарний оператор u, такий, що $q = u p u^*$.
+Далі існує оператор v, такий, що $u = e^{iv}$.
+Покладемо $u_t = e^{itv}$ для кожного $t \in [0,1]$.
+Очевидно $u_t$ - унітарний елемент із $B(H)$.
+Нехай $\phi_t = \psi_t \phi: A \to K(H) \otimes_* A$, де $\psi_t = Ad u_t \otimes id_A: K(H) \otimes_* A \to K(H) \otimes_* A$.
+Нескладно бачити, що $\phi_t$ - гомотопія.
+Отже $p_* = \phi_{0*} = \phi_{1*} = q_*$
+Гомоморфізм $p_*$ називається канонічним відображенням із $\widetilde{K_0}(H)$ в $\widetilde{K_0}(K(H) \otimes A)$.
+
+\begin{theorem}
+    Нехай A - деяка $C^*$ - алгебра і нехай H - нескінченновимірний сепарабельний простір.
+    Тоді канонічне відображення із $\widetilde{K_0}(A)$ в $\widetilde{K_0}(K(H) \otimes A)$ є ізоморфізмом.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+\begin{remark}
+    Два *-гомоморфізма між $C^*$ - алгебрами називаються \\
+    ортогональними, якщо $\phi(a)\psi(a') = 0, (a,a' \in A)$.
+    В цьому випадку $\phi + \psi$ також є *-гомоморфізмом.
+    Якщо $p \in P[A]$ - то $\phi(p), \psi(p)$ - ортогональні проектори і
+    \begin{equation*}
+        (\phi + \psi)_*[p]_{\widetilde{A}} =
+        [\phi(p) + \psi(p)]_{\widetilde{A}} =
+        [\phi(p)]_{\widetilde{A}} + [\psi(p)]_{\widetilde{A}} =
+        (\phi_* + \psi_*)([p]_{\widetilde{A}})
+    \end{equation*}
+    Якщо A - унітальна, то елементи $ \widetilde{K_0}(A) $ зображуються у вигляді
+    $[p]_{\widetilde{A}} - [q]_{\widetilde{A}} (p,q \in P[A])$, так що, очевидно,
+    \begin{equation*}
+        (\phi + \psi)_* = \phi_* + \psi_*: \widetilde{K_0}(A) \to \widetilde{K_0}(B).
+    \end{equation*}
+\end{remark}
+
+\subsection{Періодичність Ботта}\label{subsec:періодичність-ботта}
+
+Для всякого локально компактного хаусдорфова простора $\Omega$ та довільної $C^*$ - алгебри $A$
+будемо позначати $C_0(\Omega, A)$ через $A\Omega$.
+Якщо $\phi: A \to B$ є *-гомоморфізмом між $C^*$ - алгебрами A та B, то відображення
+\begin{equation*}
+    \overline{\phi}: A\Omega \to B\Omega, f \to \phi \circ f
+\end{equation*}
+також є *-гомоморфізмом.
+
+\begin{theorem}
+    \label{теорема:періодичність_1}
+    Нехай A та B - деякі $C^*$ - алгебри, нехай $\Omega$ - локально-\\комактний хаусдорфів простір.
+    Якщо $(\phi_t)_t$ - гомотопія *-гомоморфізмів з A в B, то $(\overline{\phi})_t$ - гомотопія гомоморфізмів із $\Omega A$ в $\Omega B$ .
+
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+Якщо A - деяка $C^*$ - алгебра, то
+\begin{equation*}
+    C(A) = \{f \in A[0,1] | f(1) = 0\}
+\end{equation*}
+є замкненим ідеалом в A[0,1]; він називається конусом над алгеброю A .
+
+$C^*$ - алгебра називається стягуємою, якщо відображення $id A: A \to A$ гомотопно нульовому відображенню.
+У цьому випадку $K_0(A) = 0$.
+
+\begin{theorem}
+    Для всякої $C^*$ - алгебри конус $C(A)$ є стягуємий.
+
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    Нехай A - стягуєма $C^*$ - алгебра, а $\Omega$ - локально-компактний хаусдорфів простір, тоді $C^*$ - алгебра $A\Omega$ теж є стягуємою.
+
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+Для довільної $C^*$ - алгебри її надбудовою називається $C^*$ - алгебра
+\begin{equation*}
+    S(A) = \{ f \in A[0,1] | f(0) = f(1) = 0\}
+\end{equation*}
+Очевидно, що $S(A)$ є замкненим ідеалом в $C(A)$.
+Якщо $\phi: A \to B$ - деякий *-гомоморфізм $C^*$ - алгебр, то $\overline{\phi}$ відображає $S(A)$ в $S(B)$.
+Позначимо звуження $\overline{\phi}$ на $S(A)$ через $S(\phi): S(A) \to S(B)$.
+$S(\phi)$ є *-гомоморфізмом.
+Якщо $(\phi_t)_t$ - гомотопія *-гомоморфізмів із A в B, то $(S(\phi_t))_t$ - гомотопія *-гомоморіфзмів із $S(A)$ в $S(B)$, за теоремою $\ref{теорема:періодичність_1}$
+Тож якщо алгебра $A$ є стягуємою, то її надбудова теж є стягуємою.
+
+Для довільної $C^*$ - алгебри покладемо $\widetilde{K_1}(A) = \widetilde{K_0}(S(A))$.
+Якщо $\phi: A \to B$ - деякий *-гомоморфізм $C^*$ - алгебр,
+то позначимо через $\phi_*$ гомомофізм $(S(\phi))_*: \widetilde{K_1}(A) \to \widetilde{K_1}(B)$.
+Для визначеності іноді гомоморфізми $\phi_*: \widetilde{K_0}(A) \to \widetilde{K_0}(B)$,
+$\phi_*: \widetilde{K_1}(A) \to \widetilde{K_1}(B)$ будемо позначати через $\widetilde{K_0}(\phi),\widetilde{K_1}(\phi)$ відповідно.
+Беспосередньою перевіркою можна показати, що
+\begin{equation*}
+    A \to \widetilde{K_1}(A), \phi \to \phi_*
+\end{equation*}
+- коваріантний функтор із категорії $C^*$ - алгебр в категорію абелевих груп.
+
+\begin{lemma}
+    Нехай A - унітальна $C^*$ - алгебра, а $\alpha < \beta$ - дійсні числа.
+    Якщо $p: [\alpha, \beta] \to A$ - неперервний шлях із проекторів, то існує неперервний шлях із унітарних елементів
+    $u: [\alpha, \beta] \to A$, такий, що $p(t) = u(t)p(\alpha)u^*(t)$, для усіх t із $[\alpha, \beta]$, при чому $u(\alpha)=1$.
+\end{lemma}
+
+\begin{remark}
+    Нехай $\Omega$ - локально-компактий хаусдорфів простір, а A - деяка $C^*$ - алгебра.
+    Для довільного $f \in M_n(C_0(\Omega, A))$ покладемо \\ $g = \phi(f) \in C_0(\Omega, M_n(A))$ поклавши
+    $g(\omega) = (f_{ij}(\omega))$.
+    Легко бачити, що $\phi$ є *-ізоморфізмом $M_n(C_0(\Omega, A))$ і $C_0(\Omega, M_n(A))$.
+    Він буде називатися канонічним *-ізоморфізмом.
+\end{remark}
+
+\begin{lemma}
+    Нехай A - унітальна $C^*$ - алгебра, така, що $U_n(A) = U_n^0(A)$ для всіх $n \geq 0$.
+    Тоді $\widetilde{K_1}(A) = 0$.
+
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{lemma}
+
+\begin{theorem}
+    Нехай A - унітальна AF - алгебра, або алгебра фон Ноймана.
+    Тоді $\widetilde{K_1}(A) = 0$
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+Позначимо через $S$ - замкнений ідеал в $C(\textbf{T})$, який складається із функцій таких,що $f(1) = 0$.
+\begin{theorem}
+    Нехай A - деяка $C^*$ - алгебра, а $\gamma$ - функція
+    \begin{equation*}
+    [0,1]
+        \to \textbf{T}, t \to e^{2\pi i t}
+    \end{equation*}
+    Тоді існує однозначно визначений *-ізоморфізм
+    \begin{equation*}
+        \gamma_A: A \otimes_* S \to S(A),
+    \end{equation*}
+    такий, що $\gamma_A(a \otimes f) = (f \circ \gamma)a$, для всіх $f \in \textbf(S)$ і $a \in A$
+\end{theorem}
+
+\begin{theorem}
+    Якщо коротка послідовність $C^*$ - алгебр
+    \begin{equation*}
+        0 \to J \xrightarrow{j} A \xrightarrow{\phi} B \to 0
+    \end{equation*}
+    є точною, то і послідовність
+    \begin{equation*}
+        0 \to S(J) \xrightarrow{S(j)} S(A) \xrightarrow{S(\phi)} S(B) \to 0
+    \end{equation*}
+
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    Нехай
+    \begin{equation*}
+        0 \to J \xrightarrow{j} A \xrightarrow{\phi} B \to 0
+    \end{equation*}
+    - коротка точна послідовність $C^*$ - алгебр.
+    Тоді точною є послідовність
+    \begin{equation*}
+        0 \to \widetilde{K_1}(J) \xrightarrow{j_*} \widetilde{K_1}(A) \xrightarrow{\phi_*} \widetilde{K_1}(B) \to 0
+    \end{equation*}
+
+    \begin{proof}
+        Випливає з попередньої теореми та слабкої точності для $\widetilde{K_0}$.
+    \end{proof}
+\end{theorem}
+
+Якщо $\phi_1: A_1 \to B, \phi_2: A_1 \to B$ - гомоморфізми $C^*$ - алгебр, то
+\begin{equation*}
+    C = \{(a_1, a_2) \in A_1 \oplus A_2 | \phi_1(a_1) = \phi_2(a_2)\}
+\end{equation*}
+є $C^*$ - підалгеброю в $A_1 \oplus A_2$.
+Її називають пул-беком $A_1$ і $A_2$ увздовж $\phi_1$ і $\phi_2$.
+
+Нехай $\phi: A \to B$ - деякий *-гомоморфізми $C^*$ - алгебр, то через $Z_\phi$ \\ будемо позначати пул-бек
+A та $B[0,1]$ увздовж $\phi$ та
+\begin{equation*}
+    B[0,1] \to B, f \to f(0)
+\end{equation*}
+Сюр'єктивний *-гомоморфізм
+\begin{equation*}
+    Z_\phi \to A, (a, f) \to a
+\end{equation*}
+називається проекцією $Z_\phi$ на A .
+
+Ін'єктивний *-гоморфізм
+\begin{equation*}
+    A \to Z_\phi, a \to (a, \phi(a))
+\end{equation*}
+називається вкладенням A в $Z_\phi$.
+Далі *-гомомрфізми
+\begin{equation*}
+    \epsilon: Z_\phi \to B, (a,f) \to f(1)
+\end{equation*}
+- це канонічне відображення $Z_\phi$ в $B$.
+Ядро канонічного відображення $\epsilon$ \\ позначається через $C_\phi$ та називається конусом відображення $\phi$.
+Іншими словами
+\begin{equation*}
+    C_\phi = \{ (a,f) \in A \oplus B[0,1] | f(0) = \phi(a), f(1) = 0 \}
+\end{equation*}
+Нарешті, сюр'єктивний *-гомоморфізм
+\begin{equation*}
+    C_\phi \to A, (a,f) \to a
+\end{equation*}
+називають проекцією $C_\phi$ на $A$.
+
+\begin{theorem}
+    Нехай $\phi: A \to B$ - деякий *-гомоморфізми $C^*$ - алгебр і нехай $\tilde{\pi}: Z_\phi \to A$ - проекція,
+    а $i: A \to Z_\phi$ - вкладення.
+    Тоді $\tilde{\pi}i = id_A$ і гоморфізм $i\tilde{\pi}$ гомотопно еквівалентний $id_{Z_\phi}$.
+    \begin{proof}
+        $\tilde{\pi}i = id_A$ - очевидно.
+        Для $f \in B[0,1]$, $t \in [0,1]$ визначимо $f_t \in B[0,1]$ поклавши $f_t(s) = f(ts)$,
+        тоді якщо $(a,f) \in Z_\phi$ то і $(a, f_t) \in Z_\phi$.
+        А відображення
+        \begin{equation*}
+            \phi_t: Z_\phi \to Z_\phi, (a,f) \to (a, f_t)
+        \end{equation*}
+        є *-гомоморфізмом.
+        Нескадно зрозуміти, що $(\phi_t)_t$ - гомотопія, яка з'єднує $i\tilde{\pi}$ а $id_{Z_\phi}$.
+    \end{proof}
+\end{theorem}
+
+
+\begin{lemma}
+    Нехай $\phi: A \to B$ - деякий *-гомоморфізми $C^*$ - алгебр і нехай $\pi: C_\phi \to A$ - проекція.
+    Тоді послідовність
+    \begin{equation*}
+        \widetilde{K_0}(C_\phi) \xrightarrow{\pi_*} \widetilde{K_0}(A) \xrightarrow{\phi_*} \widetilde{K_0}(B)
+    \end{equation*}
+    \begin{proof}
+        Нехай $\tilde{\pi}: Z_\phi \to A$ - проекція, $i: A \to Z_\phi$ - вкладення,
+        а $\epsilon: Z_\phi \to B$ - канонічне відображення.
+        Позначимо вкладення $C_\phi \to Z_\phi$ через j.
+        Тоді $\tilde{\pi} j = \pi$, $\epsilon i = \phi$, а отже $\tilde{\pi}_* j_* = \pi_*$, $\epsilon_* i_* = \phi_*$.
+        В наслідок попередньої леми $\tilde{\pi}i = id_A, i\tilde{\pi} \approx id_{Z_\phi}$, з цього отримаємо
+        $\tilde{\pi}_*i_* = id, i_*\tilde{\pi}_* = id$ в наслідок теореми $\ref{теорема: гомотопічна інваріантність К0}$.
+        З цього $\epsilon_* = \phi_* \tilde{\pi}_*$.
+        Звідси з того, що
+        \begin{equation*}
+            0 \to C_\phi \xrightarrow{j} Z_\phi \xrightarrow{\epsilon} B \to 0
+        \end{equation*}
+        є короткою точною послідовністю $C^*$ - алгебр, за теоремою $\ref{трм:слабка точність}$ послідовність
+        \begin{equation*}
+            0 \to \widetilde{K_0}(C_\phi) \xrightarrow{j_*} \widetilde{K_0}(Z_\phi)  \xrightarrow{\epsilon_*} \widetilde{K_0}(B) \to 0
+        \end{equation*}
+        Звідси $\tilde{\pi}_*(im(j_*)) = \tilde{\pi}_*(\ker(\epsilon_*))$.
+        З того, що $\tilde{\pi}_*(im(j_*)) = im(\pi_*)$, а $\tilde{\pi}_*(\ker(\epsilon_*)) = \ker(\phi_*)$
+        маємо $im(\pi_*) =  \ker(\phi_*)$.
+    \end{proof}
+\end{lemma}
+
+Для всякого *-гомоморфізма $\phi$ $C^*$ - алгебр назвемо ін'єктивний гомоморфізм
+\begin{equation*}
+    k: S(B) \to C_\phi, f \to (0, f)
+\end{equation*}
+вкладенням $S(B)$ в $C$.
+Легко бачити, що
+\begin{equation*}
+    0 \to S(B) \xrightarrow{k} C_\phi \xrightarrow{\pi} A \to 0
+\end{equation*}
+коротка точна послідовність $C^*$ - алгебр.
+
+Для короткої точної послідовності $C^*$ - алгебр
+\begin{equation*}
+    0 \to J \xrightarrow{j} A \xrightarrow{\phi} B \to 0
+\end{equation*}
+визначимо ін'єктивний гомоморфізм
+\begin{equation*}
+    \hat{\jmath}: J \to C_\phi, a \to (j(a), 0)
+\end{equation*}
+і назвемо його вкладенням $J$ в $C_\phi$.
+Зазначимо, що $j = \pi\hat{\jmath}$.
+Сюр'єктивний *-гомоморфізм
+\begin{equation*}
+    \hat{\phi}: C_\phi \to C(B), (a,f) \to f
+\end{equation*}
+назвемо проекцією $C_\phi$ на $C(B)$.
+Нескладно перевірити, що
+\begin{equation*}
+    0 \to J \xrightarrow{\hat{\jmath}} C_\phi \xrightarrow{\hat{\phi}} C(B) \to 0
+\end{equation*}
+є короткою точною послідовністю.
+
+\begin{lemma}
+    Нехай
+    \begin{equation*}
+        0 \to J \xrightarrow{j} A \xrightarrow{\phi} B \to 0
+    \end{equation*}
+    коротка точна послідовність і нехай $\hat{\jmath}: J \to C_\phi$ - вкладення, яке визначене вище.
+    Тоді $\widetilde{K_0}(C_j) = 0$, а відображення $\bar{\jmath}: \widetilde{K_0}(J) \to \widetilde{K_0}(C_\phi)$ є ізоморфізмом.
+%    \begin{proof}
+%        TODO
+%        Нехай $\hat{\phi}: C_\phi \to C(B)$ - визначена више проекція.
+%        Позначимо через $\hat{\phi}'$ наступний *-гомоморфізм
+%        \begin{equation*}
+%            D \to S(C(B)), f \to \hat{\phi} \circ f
+%        \end{equation*}
+%        , де $D = \{ f \in C(C_\phi) | f(0) \in \hat{\jmath}(J)\} \dots$
+%    \end{proof}
+\end{lemma}
+
+Якщо A - деяка $C^*$ - алгебра, а $f \in S(A)$,то відображення
+\begin{equation*}
+    \chi_A(f): [0,1] \to A, t \to f(1 - t)
+\end{equation*}
+також належить $S(A)$.
+Легко бачити, що відображення
+\begin{equation*}
+    \chi_A: S(A) \to S(A),  \to \chi_A(f)
+\end{equation*}
+є *-ізоморфізмом і задовільняє умові $\chi_A^2 = id_{S(A)}$.
+\begin{lemma}
+    Нехай
+    \begin{equation*}
+        0 \to J \xrightarrow{j} A \xrightarrow{\phi} B \to 0
+    \end{equation*}
+    коротка точна послідовність $C^*$ - алгебр.
+    Розглянемо коротку точну \\ послідовність
+    \begin{equation*}
+        0 \to S(B) \xrightarrow{k} C_\phi \xrightarrow{\pi} A \to 0
+    \end{equation*},
+    де $k, \pi$ - відповідні вкладення та проекція.
+    Нехай $\hat{k}: S(B) \to C_{\pi}, k': S(A) \to C_\pi$ вкладення асоційовані з другим відображенням.
+    Тоді $\hat{k}S(\phi) = k' \chi(A)$ - гомотопні *-гомоморфізми із $S(A)$ в $C_\phi$.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{lemma}
+
+Нехай
+\begin{equation}
+    \label{eq: 8}
+    0 \to J \xrightarrow{j} A \xrightarrow{\phi} B \to 0
+\end{equation}
+коротка точна послідовність $C^*$ - алгебр, а $\hat{j}: J \to C_\phi$ і $k: S(B) \to C_\phi$ - вкладення.
+Позначимо через $\partial$ гомоморфізм $(\hat{j}_*)^{-1}k_*$.
+Він є гомоморфізмом із $\widetilde{K_1}(B)$ в $\widetilde{K_0}(J)$.
+Ми будемо називати його зв'язуючим гомоморфізмом для короткої точної послідовності $\ref{eq: 8}$.
+\begin{theorem}
+    Нехай
+    \begin{equation}
+        \label{eq: 8}
+        0 \to J \xrightarrow{j} A \xrightarrow{\phi} B \to 0
+    \end{equation}
+    коротка точна послідовність $C^*$ - алгебр.
+    Тоді послідовність
+    \begin{equation*}
+        \widetilde{K_1}(A) \xrightarrow{\phi_*} \widetilde{K_1}(B) \xrightarrow{\partial} \widetilde{K_0}(J) \widetilde{K_0}(A)
+    \end{equation*}
+    точна.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+\begin{remark}
+    Коротка точна послідовність $C^*$ - алгебр.
+    \begin{equation*}
+        \label{eq: 8}
+        0 \to J \xrightarrow{j} A \xrightarrow{\phi} B \to 0
+    \end{equation*}
+    називається розщепимою, якщо існує *-гомоморфізм $\psi: B \to A$, такий,\\ що $\phi \psi = id_B$.
+    В цьому випадку
+    \begin{equation*}
+        0 \to \widetilde{K_0}(J) \xrightarrow{j_*} \widetilde{K_0}(A) \xrightarrow{\phi_*} \widetilde{K_0}(B) \to 0
+    \end{equation*}
+    є розщепимою короткою точною послідовністю.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{remark}
+
+\subsubsection[Оператори Тепліца]{Оператори Тепліца}
+Одиничне коло, яке розглядається як група наділимо нормованою мірою, яка задається довжиною дуги(міра Хаара).
+Позначимо цю міру через $d\lambda$ і будемо писати $L^p(\textbf{T})$ замість $L^p(\textbf{T},d\lambda)$.
+Для довільного n функція $\epsilon_n: T \to T, \lambda \to \lambda^n$ є неперервною.
+Позначимо через $\Gamma$ лінійну оболочку функцій $\epsilon_n$.
+ЇЇ елементи називаються тригонометричними многочленами.
+Множина $\Gamma$ є *-підалгеброю в $C(\textbf{T})$ і є щільною за нормою в $C(\textbf{T})$ .
+З того, що $C(\textbf{T})$  щільно за $L^p$ нормою в $L^p(\textbf{T})$,
+то і $\Gamma$ є щільним в $L^p(\textbf{T})$ за $L^p$ нормою.
+Отже $(\epsilon_n)_{n \in \mathbb{Z}}$ - ортонормований базис в гільбертовому просторі $L^2(\textbf{T})$.
+Нагадаємо, що $n$-тий коефіціент ряда Фур'є функції $f \in L^1(\textbf{T})$ визначається наступним чином:
+\begin{equation*}
+    \hat{f}(n) = \int f(\lambda)\overline{\lambda}^n d\lambda
+\end{equation*}
+і відображення
+\begin{equation*}
+    \hat{f}: \mathbb{Z} \to \mathbb{C}, n \to \hat{f}(n)
+\end{equation*}
+називається перетворенням Фур'є функції f.
+Якщо $\hat{f} = 0$, то $f=0$ майже всюди.
+В чьому випадку $g(\lambda)f(\lambda)d\lambda = 0$, для усіх $g \in \Gamma$, а отже і для усіх $g \in C(\textbf{T})$,
+так як множина $\Gamma$ щільна по $\sup$-нормі в $C(\textbf{T})$.
+Отже міра $f d\lambda$ є нульовою, тобто $f = 0$ майже всюди.
+Для $p \in [1, +\infty]$ покладем
+\begin{equation*}
+    H^p = \{f \in L^p(\textbf{T}) | \hat{f}(n) = 0 (n < 0)\}.
+\end{equation*}
+Цей замкнутий по $L^p$-нормі підпростір в $L^p(\mathbb{T})$ називається простором Харді.
+Позначимо через $\Gamma_+$ лінійну оболонку функцій $\epsilon_n, n \in \mathbb{N}$.
+Назвемо $\Gamma_+$ \\ аналітичними тригонометричними многочленами.
+Множина $\Gamma_+$ щільне в $H^2$ по $L^2$-нормі і $(\epsilon_n)_{n \in \mathbb{N}}$ - ортонормований базис для $H^2(\textbf{T})$.
+
+Нескладно переконатись, що для $\phi \in L^{\infty}(\textbf{T})$ включення $\phi H^2 \subseteq H^2$ тоді і тільки тоді,
+коли $\phi \in H^\infty$ і вивести звідси, що $H^\infty$ - підалгебра в $L^\infty(\textbf{T})$.
+
+\begin{lemma}
+    Якщо $f, \bar{f} \in H^1$, то існує скаляр $\alpha \in \mathbb{C}$, такий, що майже всюди $f = \alpha$.
+    \begin{proof}
+        Нехай для початку $f = \bar{f}$ майже всюди.
+        Покладемо $\alpha = \int f(\lambda) d\lambda$ і тоді $\bar{\alpha} = \int \overline{f(\lambda)} d \lambda = \alpha$.
+        Якщо $n \leq 0$, то $(\widehat{f - \alpha \epsilon_0})(n) = \int (f(\lambda) - \alpha)\overline{\epsilon_n(\lambda)} d \lambda$,
+        і отже $(\widehat{f - \alpha \epsilon_0})(n) = 0$, n > 0.
+        З цього функція $f - \alpha \epsilon_0$ має нульове перетворення Фурьє і
+        отже $f = \alpha$ майже всюди.
+        Якщо тепер $f, \bar{f} \in H^1$, то $Re(f) \in H^1$ і $Im(f) \in H^1$, і по вищедоведеному
+        обидві функції постійні майже всюди, а отже і $f$ – постійна.
+    \end{proof}
+\end{lemma}
+
+Якщо $\phi \in L^\infty(\textbf{T})$, оператор множення $M_\phi$ з символом $\phi$ визначається \\ співвідношенням:
+$M_\phi(f) = \phi f (f \in L^2(\textbf{T})); M_\phi in B(L^2(\textbf{T}))$; а відображення
+\begin{equation*}
+    L^\infty(\textbf{T}) \to B(L^2(\textbf{T})), \phi \to M_\phi
+\end{equation*}
+є ізометричним *-гомоморфізмом.
+В цьому випадку будемо називати $M_\phi$ \\ оператором Лорана.
+Покладем $\nu = M_{\epsilon_1}$ і зазначимо, що $v$ - двосторонній зсув базису
+$(\epsilon_n)_{n \in \mathbb{Z}}$, так як $\nu(\epsilon_n) = \epsilon_{n+1}$ для
+всіх $n \in \mathbb{Z}$.
+Обмеження $u$ оператора $\nu$ на $H^2$  -- односторонній зсув базиса $(\epsilon_n)_{n \in \mathbb{N}}$ в $H^2$ .
+
+Перейдем до описання інваріантних підпросторів оператора $\nu$, для цього визначимо його
+комутант, тобто множину операторів,які комутують з $\nu$.
+
+\begin{theorem}
+    \label{теорема:комутуючі зі зсувом оператори}
+    Обмежений оператор $w$ в $ L^2(\textbf{T}) $ комутує з $\nu$ тоді і тільки тоді, коли
+    $w = M_\phi$ для деякої функції $\phi \in L^\infty{\textbf{T}}$.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+Нехай $E$ - борельвська множина в $\textbf{T}$, тоді $M_{\chi_E}$ - проектор в $ L^2(\textbf{T})$ .
+Назвемо його образ $K$ вінеровим векторним (під)простором в $ L^2(\textbf{T}) $.
+Зазначимо, що $\nu(K) = K$.
+Якщо $\phi$ -- унітарний елемент $L^\infty(\textbf{T})$, то $\phi H^2$ - замкнутий векторний
+підпростір в $L^2(\mathbf{T})$, який називаєтсья підпростором Берлінга.
+Зазначимо далі, що $\phi H^2$ -- також інваріантний відносно $\nu$, але $\nu(\phi(H^2)) \neq \phi H^2$.
+
+\begin{theorem}
+    \label{теорема:інваріантні відносно зсуву підпростори}
+    Замкнуті векторні підпростори в $ L^2(\textbf{T}) $, інваріантні відносно двустороннього зсуву
+    $\nu = M_{\epsilon_1}$  - це в точності вінерові і берліногі простори.
+    Точніше, якщо $K$ -- інваріантний замкнутий векторний підпростів відносно $\nu$, то:
+    \begin{enumerate}
+        \item $\nu(K) = K$ тоді і тільки тоді, коли $K$ -- деякий вінерів простір.
+        \item $\nu(K) \neq K$ тоді і тольки тоді, коли $K$ -- деякий простір Берлінга.
+    \end{enumerate}
+    \begin{proof}
+        Нехай $K$ -- замкнутий векторний підпростір в $ L^2(\textbf{T}) $,
+        інваріантний відносно $\nu$.
+        Нехай спочатку $\nu(K) = K$ і нехай p -- проеектор в $L^2(T)$ на K .
+        Так як $K$ інваріантий відносно $\nu$, nо $p\nu =\nu p$.
+        Отже по теоремі~$\ref{теорема:комутуючі зі зсувом оператори}$ існує елемент
+        $\phi \in L^\infty(\mathbf{T})$, такий, що $p = M_\phi$.
+        З того,що p - проектор випливає, що $\phi = \chi_E$, майже всюди,
+        де $E$ - деякий вимірний простір.
+        Отже, $p = M_{\chi_E}$, а з цього $K$ - вінерів простір.
+
+        Нехай тепер $\vu(K) \neq K$.
+        Тоді існує вектор $\phi$, ортогональний до $\nu(K)$.
+        Так як $\nu^n(K) \in \nu(K)$ для усіх $n > 0$, то $0 = \langle \nu^n(\phi), \phi \rangle = \int \epsilon_n(\lambda)|\phi(\lambda)|^2 d \lambda$ .
+        Отже $|\phi|^2 = \alpha$ майже всюди.
+        Оскільки $||\phi||_2 = 1$, то $\alpha = 1$.
+        Таким чином, $\phi$ унітарний елемент в $L^\infty(\mathbf{T})$ і, очевидно, $\phi H^2 \subseteq K$.
+        Крім того, $(\epsilon_n \phi)_{n \in \mathbb{Z}}$ -- ортонормований базис для $L^2(\mathbf{T})$,
+        та $\epsilon_n \phi \in K^\bot$ (через те, що $\langle \epsilon_n, \psi \rangle = \langle \phi, \epsilon_{-n} \psi \rangle$
+        для усіх $\psi \in K$, бо $\epsilon_{-n}\psi \in \vu(K)$.
+        З цього випливає, що $(\epsilon_n \phi)_{n \in \mathbf{N}}$ -- ортонормований базис для K,
+        а з цього $K = \phi H^2$.
+        Таким чином K - простор Берлінга.
+    \end{proof}
+\end{theorem}
+
+\begin{corollary}[Ф.Ріс, М.Ріс]
+    Якщо f - функція із $H^2$, яка не рівна нулю на множині ненульової міри, то
+    множина точок $\mathbf{T}$, де f рівна нулю, має міру нуль.
+\end{corollary}
+
+\begin{theorem}
+    Замкнутими підпросторами, цілком звідними для оператора одностороннього зсуву u
+    є лише трівіальні інваіантні підпростори 0 та $H^2$.
+    \begin{proof}
+        Нехай K - нетривіальний замкнутий векторний підпростір \\ інваріантний відносно u.
+        Так як $\cap_{n=1}^{\infty} u^n(K) \subseteq \cap_{n=1}^\infty u^n(H^2) = 0$, то
+        $u(K) \neq K$, тому по теоремі~$\ref{теорема:інваріантні відносно зсуву підпростори}$
+        K - простір Берлінга.
+        Аналогічно, $H^2 \ominus K$ також простір Берлінга.
+        Отже існують такі унітарні елементи $\phi, \psi \in L^\infty(\mathbf{T})$, такі, що
+        $K = \phi H^2$ і $H^2 \ominus K = \psi H^2$.
+        Для усіх $n \geq 0$ маємо $\espilon_n \in K$ і $\epsilon_n \psi = H^2 \ominus K$,
+        отже $\langle \epsilon_n \phi, \psi \rangle = \langle \phi, \epsilon_n \psi \rangle = 0$.
+        Тому $\phi \hat{\psi}$ має нульове перетворення Фур'є, тобто $\phi \hat{\psi} = 0$ майже всюди,
+        що неможливо, бо $\phi \psi$ - унітарні.
+        Таким чином єдиними незвідними замкнутими векторними підпросторами для u є $0$ і $H^2$.
+    \end{proof}
+\end{theorem}
+
+Позначимо через p проектор в $L^2(T)$ на $H^2$.
+Якщо $\phi \in L^{\infty}(\mathbf(T))$, то оператор
+\begin{equation*}
+    T_\phi: H^2 \to H^2, \psi \to p(\phi f)
+\end{equation*}
+має норму $||T_\phi|| \leq ||\phi||_\infty$.
+Назвемо $T_\phi$ теплицевим оператором з символом $\phi$.
+Відображення
+\begin{equation*}
+    L^\infty(\mathbb{T}) \to B(H^2), \phi \to T_\phi.
+\end{equation*}
+є лінійним і зберігає інволюцію, тобто $T^*_\phi = T_\bar{\phi}$.
+
+З цього випливає, що у випадку, коли $\bar{\phi} = \phi$, то оператор $T_\phi$ - самоспряжений.
+Якщо $\phi \in L^\infty(\mathbf{T})$, то матриця $(\lambda_{ij})$ відносно базиса $(\epsilon_n)_{n \in \mathbf{Z}}$
+постійна на \\ діагоналях, тобто $\lambda_{ij} = \lambda_{i+1, j+1}$ для усіх $i,j$.
+Це випливає з того, що $M_\phi$ комутує з $\nu = M_\epsilon_1$.
+\begin{theorem}
+    Нехай $\phi \in L^\infty, \psi \in H^\infty$.
+    Тоді
+    \begin{equation*}
+        T_{\phi \psi} = T_{\phi}T_{\psi}, T_{\bar{\psi} \phi} = T_{\bar{\psi}} T_{\phi}
+    \end{equation*}
+
+    \begin{proof}
+        З того, що $\psi \in H^\infty$ випливає, що $\psi H^2 \subseteq H^2$;
+        отже для $f \in H^2$ ми маємо $T_\phi T_\psi (f) = p(\phi(p(\psi f))) =
+        p(\phi \psi f) = T_{\phi \psi} (f)$.
+        Для отримання другого результату зазначимо, що $T_{\bar{\phi}} T_{\psi} =
+        T_{\bar{\phi} \psi}$.
+        Далі перейдемо до спряжених $T^*_\psi T^*_{\bar{\phi}\psi}, T_{\bar{\psi}} T_\phi = T_{\bar{\psi} \phi}$.
+    \end{proof}
+\end{theorem}
+
+$C^*$ - алгебру породжену усіма теплицевими операторами $T_\phi$ з неперевними
+символами $\phi$ будемо позначати через $ \mathbf{A}$ і назвемо алгеброю Тепліца.
+
+\begin{theorem}[Кобурн]
+    Нехай v - ізометрія в унітальній $C^*$ - алгебрі B, і нехай $u = T_{\epsilon_1} \in \mathbf{A}$.
+    Тоді існує єдиний унітальний *-гомоморфізм $\phi: \mathbf{A} \to B$,
+    для якого $\phi(u) = v$ .
+    Крім того, якщо $v v^* \neq 1$, то $\phi$ -- ізометричний гомоморфізм.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+Позначимо $K(H^2)$ через $\mathbf{K}$.
+Єдиний *-гомоморфізм $\tau: \mathbf{A} \to \mathbb{C}$, такий, що $\tau(u) = 1$,
+назвемо кононічним відображенням $\mathbf{A}$ в $\mathbb{C}$.
+
+\begin{theorem}[Кунц]
+    Нехай D - унітальна $C^*$ - алгебра, а $\tau: \mathbf{A} \to \mathbb{C}$
+    -- канонічне відображення.
+    Тоді
+    \begin{equation*}
+        \widetilde{K_0}(\mathbf{A} \otimes_* D) \xrightarrow{(\tau \otimes_* id)_*} \widetilde{K_0}(\mathbb{C} \otimes_* D)
+    \end{equation*}
+    --  ізоморфізм.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+З того, що для довільної $C^*$ - алгебри $B$ алгебра $B \otimes_* \mathbb{C}$
+*-ізоморфна B, то з попередньої теореми випливає, що $\widetilde{K_0}(\mathbf{A}) =
+\widetilde{K_0}(\mathbb{C}) = \mathbb{Z}$.
+Позначиом через $ \mathbf{A}_0 $ ядро канонічного відображення $\tau: \mathbf{A} \to \mathbb{C}$.
+\begin{corollary}
+    Нехай D - довільна $C^*$ - алгебра.
+    Тоді $\widetilde{K_i}(A_0 \otimes_* D) = 0$, для $i = 0,1$.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{corollary}
+
+\begin{theorem}[Періодичність Бота]
+Для довільної $C^*$ - алгебри D визначене вище відображення
+    \begin{equation*}
+        \beta_D: \widetilde{K_1}(S(D)) \to \widetilde{K_0}(D)
+    \end{equation*}
+    є ізоморфізмом.
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+\begin{theorem}
+    Нехай
+    \begin{equation*}
+        0 \to J \xrightarrow{j} A \xrightarrow{\phi} \to 0
+    \end{equation*}
+    - коротка точна послідовність $C^*$ - алгебр. \\
+    Тоді наступна діграма є комутативною
+    \begin{equation*}
+        % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGkB9YgCgCkAlCAC+pdJlz5CKAIzkqtRizZdeAQSGjx2PASIAmedXrNWiDtx4AhTWJAYdUg6RkKTy81xn9b2yXtkXNyUzC28NETsHf2kSIOMQlU5vGxEFGCgAc3giUAAzACcIAFskMhAcCCQ5RVM2ACtOACpI-KLSxBrKpENajxAAHQG0AAssZtaQQpKe6m7EAGYEuvMhtDoCvEZJ6Y6liqrEABZl-saWrSn2pBODpABWU9C1sYnL3Ye5w-L3Z+GNrYMNLCIA
+        \begin{tikzcd}
+            \widetilde{K_0}(J) \arrow[r, "j_*"]      & \widetilde{K_0}(A) \arrow[r, "\phi_*"] & \widetilde{K_0}(B) \arrow[d, "\partial"] \\
+            \widetilde{K_1}(B) \arrow[u, "\partial"] & \widetilde{K_1}(A) \arrow[l, "\phi_*"] & \widetilde{K_1}(J) \arrow[l, "j_*"]
+        \end{tikzcd}
+    \end{equation*}
+    Відображення $\partial: \widetilde{K_0}(B) \to \widetilde{K_1}(J)$ визначений
+    як композиція гомоморфізмів
+    \begin{equation*}
+        \widetilde{K_0}(B) \xrightarrow{\beta_B^{-1}} \widetilde{K_1}(S(B)) \xrightarrow{\partial'} \widetilde{K_1}(J)
+    \end{equation*}
+    де $\partial'$ зв'язуючий гомоморфізм,відповідаючий короткій точній послідовності
+    \begin{equation*}
+        0 \to S(J) \xrightarrow{S(j)} S(A) \xrightarrow{S(\phi)} 0
+    \end{equation*}
+%    \begin{proof}
+%        TODO
+%    \end{proof}
+\end{theorem}
+
+
