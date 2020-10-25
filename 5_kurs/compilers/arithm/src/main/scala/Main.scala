@@ -43,7 +43,14 @@ class Tokens(input: PushbackReader) {
   @scala.annotation.tailrec
   final def nextToken(): Token = input.read() match {
     case '+' => Plus
-    case '-' => Minus
+    case '-' =>
+      val next = input.read().toChar
+      input.unread(next)
+      if(next.isDigit) {
+        Num(-readNumber())
+      } else {
+        Minus
+      }
     case '*' => Prod
     case '/' => Div
     case '(' => LParen
@@ -51,7 +58,7 @@ class Tokens(input: PushbackReader) {
     case c if c == -1 || c == '\n' => EOF
     case c if c.toChar.isDigit =>
       input.unread(c)
-      readNumber()
+      Num(readNumber())
     case c if c.toChar.isLetter =>
       input.unread(c)
       readLiteral() match {
@@ -60,20 +67,29 @@ class Tokens(input: PushbackReader) {
     case c if c.toChar.isWhitespace =>
       nextToken()
     case err =>
-      println(s"Unexpected symbol: $err")
-      nextToken()
+      throw new Exception(s"Unexpected symbol: ${ new String(Array(err.toChar)) }")
   }
 
-  private def readNumber(): Num = {
+  private def readNumber(): Double = {
     var c: Char = 0
     val sequence = mutable.ArrayBuffer[Char]()
     do {
       c = input.read().toChar
       sequence.addOne(c)
     } while (c.isDigit)
-    sequence.remove(sequence.size - 1)
-    input.unread(c)
-    Num(sequence.mkString.toDouble)
+    if (c != '.') {
+      sequence.remove(sequence.size - 1)
+      input.unread(c)
+      sequence.mkString.toDouble
+    } else {
+      do {
+        c = input.read().toChar
+        sequence.addOne(c)
+      } while (c.isDigit)
+      sequence.remove(sequence.size - 1)
+      input.unread(c)
+      sequence.mkString.toDouble
+    }
   }
 
   private def readLiteral(): String = {
@@ -197,6 +213,7 @@ object Main {
     while (true) {
       val parser = new Parser(tokens)
       val res = parser.pS()
+      pprint.pprintln(res)
       val value = evaluator.eval(res)
       pprint.pprintln(value)
     }
