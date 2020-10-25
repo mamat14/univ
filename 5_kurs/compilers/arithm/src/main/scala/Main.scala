@@ -9,15 +9,22 @@ case object Plus extends Token
 case object Minus extends Token
 case object Prod extends Token
 case object Div extends Token
+case object Comma extends Token
 case class Id(s: String) extends Token
 case class Num(n: Number) extends Token
 case object LParen extends Token
 case object RParen extends Token
 case object EOF extends Token
 
+sealed trait P1
+case object P1Empty extends P1
+case class P1Rep(e: E, p1: P1) extends P1
+
+case class P(e: E, p1: P1)
+
 sealed trait K extends Expr
 case object KEmpty extends K
-case class KE(e: E) extends K
+case class KE(e: P) extends K
 
 sealed trait F extends Expr
 case class FId(id: String, k: K) extends F
@@ -55,6 +62,7 @@ class Tokens(input: PushbackReader) {
     case '/' => Div
     case '(' => LParen
     case ')' => RParen
+    case ',' => Comma
     case c if c == -1 || c == '\n' => EOF
     case c if c.toChar.isDigit =>
       input.unread(c)
@@ -127,14 +135,24 @@ class Parser(tokens: Tokens) {
     }
   }
 
+  private def pP1(): P1 = curTok match {
+    case RParen => P1Empty
+    case Comma => eat(Comma); P1Rep(pE(), pP1())
+    case err => throw new Exception(s"Expected ), or ','. Got $err ")
+  }
+
+  private def pP(): P = curTok match {
+    case _ @ (LParen | Id(_) | Num(_)) => P(pE(), pP1())
+    case err => throw new Exception(s"Expected (, id, num in P. Got $err ")
+  }
 
   private def pK(): K = curTok match {
-    case _@(EOF | Plus | Minus | Prod | Div | RParen) => KEmpty
+    case _@(EOF | Plus | Minus | Prod | Div | RParen | Comma) => KEmpty
     case LParen => eat(LParen)
-      val res = KE(pE())
+      val res = KE(pP())
       eat(RParen)
       res
-    case err => throw new Exception(s"Expected EOF, +, -, *, /, ), ( in K. Got $err ")
+    case err => throw new Exception(s"Expected EOF, +, -, *, /, ), ( or ',' in K. Got $err ")
   }
 
   private def pF(): F = curTok match {
@@ -149,14 +167,14 @@ class Parser(tokens: Tokens) {
   }
 
   private def pT1(): T1 = curTok match {
-    case _@(Plus | Minus | RParen | EOF) => T1Empty
+    case _@(Plus | Minus | RParen | Comma | EOF) => T1Empty
     case Prod => eat(Prod); T1Prod(pF(), pT1())
     case Div => eat(Div); T1Div(pF(), pT1())
     case err => throw new Exception(s"Expected +,-,*, / or EOF in T1. Got $err.")
   }
 
   private def pE1(): E1 = curTok match {
-    case _@(RParen | EOF) => E1Empty
+    case _@(RParen | Comma | EOF) => E1Empty
     case Plus => eat(Plus); E1Plus(pT(), pE1())
     case Minus => eat(Minus); E1Minus(pT(), pE1())
     case err => throw new Exception(s"Expected +,- or ) in E'. Got $err")
@@ -182,14 +200,20 @@ class Parser(tokens: Tokens) {
 }
 
 class Evaluator(variables: Map[String, Double]) {
+  private def evalVars(p: P): List[Double] = p match {
+    case P(e, P1Empty) => List(eval(e))
+    case P(e, p1: P1Rep) => eval(e) :: evalVars(P(p1.e, p1.p1))
+  }
+
   def eval(expr: Expr): Double = expr match {
     case FId(id, k) => k match {
       case KEmpty => variables(id)
-      case KE(e) => id match {
-        case "sin" => math.sin(eval(e))
-        case "cos" => math.cos(eval(e))
-        case "tg" => math.tan(eval(e))
-        case unknown => throw new Exception(s"Unknown function $unknown.")
+      case KE(p) => (id, evalVars(p)) match {
+        case ("sin", List(x)) => math.sin(x)
+        case ("cos", List(x)) => math.cos(x)
+        case ("tg", List(x)) => math.tan(x)
+        case ("pow", List(x,y)) => math.pow(x,y)
+        case unknown => throw new Exception(s"Can't apply function. (F, args) = $unknown.")
       }
     }
     case FNum(num) => num.doubleValue()
@@ -205,17 +229,46 @@ class Evaluator(variables: Map[String, Double]) {
 }
 
 object Main {
-  val input: PushbackReader = new PushbackReader(Source.stdin.reader())
-  val tokens = new Tokens(input)
-  val evaluator = new Evaluator(Map())
+  import io.AnsiColor._
+  val colors = List(RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN)
+  var curColor = 0
+  def pprint(obj: Any, depth: Int = 0, paramName: Option[String] = None): Unit = {
+    val indent = "  " * (depth - 1) + ("|-" * math.min(depth, 1))
+    val ptype = obj match { case _: Iterable[Any] => "" case obj: Product => obj.productPrefix case _ => obj.toString }
+    val color = colors(depth % colors.size)
+    println(color + s"$indent$ptype")
+
+    obj match {
+      case seq: Iterable[Any] =>
+        seq.foreach(pprint(_, depth + 1))
+      case obj: Product =>
+        (obj.productIterator zip obj.productElementNames)
+          .foreach { case (subObj, paramName) => pprint(subObj, depth + 1, Some(paramName)) }
+      case _ =>
+    }
+  }
+
+  def parseParams(s: String): Map[String, Double] = s.split(";")
+    .filterNot(_.isEmpty)
+    .map(_.split('='))
+    .map(l => (l(0), l(1).toDouble))
+    .toMap
 
   def main(args: Array[String]): Unit = {
+    println("Enter global variables in form: x=2;y=3.1;")
+    val globalParams = parseParams(scala.io.StdIn.readLine())
     while (true) {
+      println("Enter expression to evaluate. Example: sin(3.14) + pow(2, 3)")
+      val input: PushbackReader = new PushbackReader(Source.stdin.reader())
+      val tokens = new Tokens(input)
       val parser = new Parser(tokens)
       val res = parser.pS()
-      pprint.pprintln(res)
+      pprint(res)
+      println(BLACK + "Enter variables in form: x=2;y=3.1. Press Enter to ignore.")
+      val params = parseParams(scala.io.StdIn.readLine())
+      val evaluator = new Evaluator(globalParams ++ params)
       val value = evaluator.eval(res)
-      pprint.pprintln(value)
+      println(value)
     }
   }
 }

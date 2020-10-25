@@ -1,10 +1,9 @@
-# Docs
-
+# Документація
+## Метод перший. LL(1) парсер
 Використовується LL(1) парсер.
 Граматика:
 
 ```text
-S ::= E $
 E ::= T E'
 E' ::= + T E'
 E' ::= ''
@@ -15,7 +14,10 @@ F ::= ( E )
 F ::= id K
 F ::= num
 K ::= ''
-K ::= ( E )
+K ::= ( P )
+P ::= E P'
+P' ::= , E P'
+P' ::= ''
 ```
 Тут E - вираз. T - доданок. F - множник. інши - допоміжні нетермінали.
 
@@ -23,11 +25,11 @@ K ::= ( E )
 First, follow, nullable, та таблиця переходів наведені нижче.
 
 
-<table>
+<table class="pure-table pure-table-bordered">
     <thead>
-    <tr><th>Nonterminal</th><th>Nullable?</th><th>First</th><th>Follow</th></tr>
+    <tr id="firstFollowTableHead"><th>Nonterminal</th><th>Nullable?</th><th>First</th><th>Follow</th></tr>
     </thead>
-    <tbody id="firstFollowTableRows"><tr></tr><tr><td nowrap="nowrap">S</td><td nowrap="nowrap">✖</td><td nowrap="nowrap">(, id, num</td><td nowrap="nowrap"></td></tr><tr></tr><tr><td nowrap="nowrap">E</td><td nowrap="nowrap">✖</td><td nowrap="nowrap">(, id, num</td><td nowrap="nowrap">), $</td></tr><tr></tr><tr><td nowrap="nowrap">E'</td><td nowrap="nowrap">✔</td><td nowrap="nowrap">+</td><td nowrap="nowrap">), $</td></tr><tr></tr><tr><td nowrap="nowrap">T</td><td nowrap="nowrap">✖</td><td nowrap="nowrap">(, id, num</td><td nowrap="nowrap">+, ), $</td></tr><tr></tr><tr><td nowrap="nowrap">T'</td><td nowrap="nowrap">✔</td><td nowrap="nowrap">*</td><td nowrap="nowrap">+, ), $</td></tr><tr></tr><tr><td nowrap="nowrap">F</td><td nowrap="nowrap">✖</td><td nowrap="nowrap">(, id, num</td><td nowrap="nowrap">+, *, ), $</td></tr><tr></tr><tr><td nowrap="nowrap">K</td><td nowrap="nowrap">✔</td><td nowrap="nowrap">(</td><td nowrap="nowrap">+, *, ), $</td></tr></tbody>
+    <tbody id="firstFollowTableRows"><tr></tr><tr><td nowrap="nowrap">S</td><td nowrap="nowrap">✖</td><td nowrap="nowrap">(, id, num</td><td nowrap="nowrap"></td></tr><tr></tr><tr><td nowrap="nowrap">E</td><td nowrap="nowrap">✖</td><td nowrap="nowrap">(, id, num</td><td nowrap="nowrap">), ,, $</td></tr><tr></tr><tr><td nowrap="nowrap">E'</td><td nowrap="nowrap">✔</td><td nowrap="nowrap">+</td><td nowrap="nowrap">), ,, $</td></tr><tr></tr><tr><td nowrap="nowrap">T</td><td nowrap="nowrap">✖</td><td nowrap="nowrap">(, id, num</td><td nowrap="nowrap">+, ), ,, $</td></tr><tr></tr><tr><td nowrap="nowrap">T'</td><td nowrap="nowrap">✔</td><td nowrap="nowrap">*</td><td nowrap="nowrap">+, ), ,, $</td></tr><tr></tr><tr><td nowrap="nowrap">F</td><td nowrap="nowrap">✖</td><td nowrap="nowrap">(, id, num</td><td nowrap="nowrap">+, *, ), ,, $</td></tr><tr></tr><tr><td nowrap="nowrap">K</td><td nowrap="nowrap">✔</td><td nowrap="nowrap">(</td><td nowrap="nowrap">+, *, ), ,, $</td></tr><tr></tr><tr><td nowrap="nowrap">P</td><td nowrap="nowrap">✖</td><td nowrap="nowrap">(, id, num</td><td nowrap="nowrap">)</td></tr><tr></tr><tr><td nowrap="nowrap">P'</td><td nowrap="nowrap">✔</td><td nowrap="nowrap">,</td><td nowrap="nowrap">)</td></tr></tbody>
 </table>
 
 <table>
@@ -36,5 +38,83 @@ First, follow, nullable, та таблиця переходів наведені
     <tbody id="llTableRows"><tr></tr><tr><td nowrap="nowrap">S</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap">S ::= E $</td><td nowrap="nowrap"></td><td nowrap="nowrap">S ::= E $</td><td nowrap="nowrap">S ::= E $</td></tr><tr></tr><tr><td nowrap="nowrap">E</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap">E ::= T E'</td><td nowrap="nowrap"></td><td nowrap="nowrap">E ::= T E'</td><td nowrap="nowrap">E ::= T E'</td></tr><tr></tr><tr><td nowrap="nowrap">E'</td><td nowrap="nowrap">E' ::= ε</td><td nowrap="nowrap">E' ::= + T E'</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap">E' ::= ε</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td></tr><tr></tr><tr><td nowrap="nowrap">T</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap">T ::= F T'</td><td nowrap="nowrap"></td><td nowrap="nowrap">T ::= F T'</td><td nowrap="nowrap">T ::= F T'</td></tr><tr></tr><tr><td nowrap="nowrap">T'</td><td nowrap="nowrap">T' ::= ε</td><td nowrap="nowrap">T' ::= ε</td><td nowrap="nowrap">T' ::= * F T'</td><td nowrap="nowrap"></td><td nowrap="nowrap">T' ::= ε</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td></tr><tr></tr><tr><td nowrap="nowrap">F</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap">F ::= ( E )</td><td nowrap="nowrap"></td><td nowrap="nowrap">F ::= id K</td><td nowrap="nowrap">F ::= num</td></tr><tr></tr><tr><td nowrap="nowrap">K</td><td nowrap="nowrap">K ::= ε</td><td nowrap="nowrap">K ::= ε</td><td nowrap="nowrap">K ::= ε</td><td nowrap="nowrap">K ::= ( E )</td><td nowrap="nowrap">K ::= ε</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td></tr></tbody>
 </table>
 
-    
+## Метод другий. Придумав сам
+### Опис
+Рекурсивно:
+Основний switch statement.
+```text
+switch(токен) {
+    якщо це ( => numberStack.push(рекурсивноОбрахувати)
+    якщо це + | - | * | / | "pow" | "sin" то 
+       якщо оператори непусті та (precedence(токен) <= precedence(операторНаСтеку)) 
+            обрахувати стек
+       додати оператор на вершину стека
+    якщо це змінна => numberStack.push(знайти(токен))
+    якщо це число => numberStack.push(токен)
+    якщо це ) | 'кінець вводу' => обрахувати стек
+}
+```
+Приклад обрахунку
+```text
+2 pow (4 + sin 2)
+Eval
+Stack()
+Stack()
+--------------------------------------------------------------------------------
+Eval
+Stack(Num(2.0))
+Stack()
+--------------------------------------------------------------------------------
+Eval
+Stack(Num(2.0))
+Stack(Id(pow))
+--------------------------------------------------------------------------------
+Eval //старт рекурсії, тобто обраховуємо (4 + sin 2)
+Stack()
+Stack()
+--------------------------------------------------------------------------------
+Eval
+Stack(Num(4.0))
+Stack()
+--------------------------------------------------------------------------------
+Eval
+Stack(Num(4.0))
+Stack(Plus)
+--------------------------------------------------------------------------------
+Eval
+Stack(Num(4.0))
+Stack(Id(sin), Plus)
+--------------------------------------------------------------------------------
+Eval
+Stack(Num(2.0), Num(4.0))
+Stack(Id(sin), Plus)
+--------------------------------------------------------------------------------
+Reduce
+Stack(Num(2.0), Num(4.0))
+Stack(Id(sin), Plus)
+--------------------------------------------------------------------------------
+Reduce
+Stack(Num(0.9092974268256817), Num(4.0))
+Stack(Plus)
+--------------------------------------------------------------------------------
+Reduce
+Stack(Num(4.909297426825682))
+Stack()
+--------------------------------------------------------------------------------
+Eval
+Stack(Num(4.909297426825682), Num(2.0))
+Stack(Id(pow))
+--------------------------------------------------------------------------------
+Reduce
+Stack(Num(4.909297426825682), Num(2.0))
+Stack(Id(pow))
+--------------------------------------------------------------------------------
+Reduce
+Stack(Num(30.05009041917967))
+Stack()
+--------------------------------------------------------------------------------
+30.05009041917967
 
+Process finished with exit code 0
+
+```
