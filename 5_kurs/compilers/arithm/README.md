@@ -38,6 +38,102 @@ First, follow, nullable, та таблиця переходів наведені
     <tbody id="llTableRows"><tr></tr><tr><td nowrap="nowrap">S</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap">S ::= E $</td><td nowrap="nowrap"></td><td nowrap="nowrap">S ::= E $</td><td nowrap="nowrap">S ::= E $</td></tr><tr></tr><tr><td nowrap="nowrap">E</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap">E ::= T E'</td><td nowrap="nowrap"></td><td nowrap="nowrap">E ::= T E'</td><td nowrap="nowrap">E ::= T E'</td></tr><tr></tr><tr><td nowrap="nowrap">E'</td><td nowrap="nowrap">E' ::= ε</td><td nowrap="nowrap">E' ::= + T E'</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap">E' ::= ε</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td></tr><tr></tr><tr><td nowrap="nowrap">T</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap">T ::= F T'</td><td nowrap="nowrap"></td><td nowrap="nowrap">T ::= F T'</td><td nowrap="nowrap">T ::= F T'</td></tr><tr></tr><tr><td nowrap="nowrap">T'</td><td nowrap="nowrap">T' ::= ε</td><td nowrap="nowrap">T' ::= ε</td><td nowrap="nowrap">T' ::= * F T'</td><td nowrap="nowrap"></td><td nowrap="nowrap">T' ::= ε</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td></tr><tr></tr><tr><td nowrap="nowrap">F</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap"></td><td nowrap="nowrap">F ::= ( E )</td><td nowrap="nowrap"></td><td nowrap="nowrap">F ::= id K</td><td nowrap="nowrap">F ::= num</td></tr><tr></tr><tr><td nowrap="nowrap">K</td><td nowrap="nowrap">K ::= ε</td><td nowrap="nowrap">K ::= ε</td><td nowrap="nowrap">K ::= ε</td><td nowrap="nowrap">K ::= ( E )</td><td nowrap="nowrap">K ::= ε</td><td nowrap="nowrap"></td><td nowrap="nowrap"></td></tr></tbody>
 </table>
 
+Приклад роботи програми:
+```text
+Enter global variables in form: x=2;y=3.1;
+PI=3.14
+Enter expression to evaluate. Example: sin(3.14) + pow(2, 3)
+sin(PI)
+S
+|-E
+  |-T
+    |-FId
+      |-sin
+      |-KE
+        |-P
+          |-E
+            |-T
+              |-FId
+                |-PI
+                |-KEmpty
+              |-T1Empty
+            |-E1Empty
+          |-P1Empty
+    |-T1Empty
+  |-E1Empty
+Enter variables in form: x=2;y=3.1. Press Enter to ignore.
+
+0.0015926529164868282
+Enter expression to evaluate. Example: sin(3.14) + pow(2, 3)
+pow(sin(x), 2) + pow(cos(x), 2)
+S
+|-E
+  |-T
+    |-FId
+      |-pow
+      |-KE
+        |-P
+          |-E
+            |-T
+              |-FId
+                |-sin
+                |-KE
+                  |-P
+                    |-E
+                      |-T
+                        |-FId
+                          |-x
+                          |-KEmpty
+                        |-T1Empty
+                      |-E1Empty
+                    |-P1Empty
+              |-T1Empty
+            |-E1Empty
+          |-P1Rep
+            |-E
+              |-T
+                |-FNum
+                  |-2.0
+                |-T1Empty
+              |-E1Empty
+            |-P1Empty
+    |-T1Empty
+  |-E1Plus
+    |-T
+      |-FId
+        |-pow
+        |-KE
+          |-P
+            |-E
+              |-T
+                |-FId
+                  |-cos
+                  |-KE
+                    |-P
+                      |-E
+                        |-T
+                          |-FId
+                            |-x
+                            |-KEmpty
+                          |-T1Empty
+                        |-E1Empty
+                      |-P1Empty
+                |-T1Empty
+              |-E1Empty
+            |-P1Rep
+              |-E
+                |-T
+                  |-FNum
+                    |-2.0
+                  |-T1Empty
+                |-E1Empty
+              |-P1Empty
+      |-T1Empty
+    |-E1Empty
+Enter variables in form: x=2;y=3.1. Press Enter to ignore.
+x=1.1
+1.0
+```
 ## Метод другий. Придумав сам
 ### Опис
 Рекурсивно:
