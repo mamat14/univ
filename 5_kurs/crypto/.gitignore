@@ -1,3 +1,7 @@
-cmake-build-debug/**/*
-.idea/**/*
+aes-lab/cmake-build-debug
+aes-lab/dist
+**/.idea
 .DS_Store
+workspace.xml
+.metals
+.vscode
