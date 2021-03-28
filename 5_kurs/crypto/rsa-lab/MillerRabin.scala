@@ -5,9 +5,6 @@ exec scala "$0" "$@"
 import scala.io.StdIn
 import util.control.Breaks._
 import scala.util.Random
-trait PrimeTester {
-  def isPrime(n: BigInt, k: Int): Boolean
-}
 
 object MillerRabin {
   def isPrime(n: BigInt, k: Int): Boolean = {
@@ -18,8 +15,8 @@ object MillerRabin {
       t/=2
       s+=1
     }
-    var a, x: BigInt = null
     val random = new Random()
+    var a, x: BigInt = null
     for ( _ <- 1 until k ) {
       breakable {
         a = 2 + (BigInt(n.bitCount + 1, random) % (n - 3))

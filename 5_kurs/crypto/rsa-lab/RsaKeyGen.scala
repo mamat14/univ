@@ -51,15 +51,15 @@ case class AKey[P, S](public: P, secret: S)
 
 class RSA(bitLengthC: Int) extends AsymProtocol[Public, Secret] {
   override val nbits: Int = bitLengthC
-
+  private def lcm(p: BigInt, q: BigInt) = (p - 1) * (q - 1) / ((p-1) gcd (q-1))
   def gen(): Key = {
     val random = new Random()
     val p = BigInt.probablePrime(nbits, random)
     val q = BigInt.probablePrime(nbits, random)
     val n = p * q
-    val λ = (p - 1) * (q - 1) / (p gcd q)
+    val λ = lcm(p,q)
     val e = 65537
-    val d = e.modInverse(λ)
+    val d = e modInverse λ
     AKey(Public(n, e), Secret(d))
   }
 
@@ -68,8 +68,7 @@ class RSA(bitLengthC: Int) extends AsymProtocol[Public, Secret] {
   def decrypt(cipher: BigInt, key: Key): BigInt = cipher modPow (key.secret.d, key.public.n)
 }
 
-object OAEP {
-  self =>
+object OAEP { self =>
   import BigIntHelpers._
   def withOAEP[P, S](orig: AsymProtocol[P, S]): AsymProtocol[P, S] = new AsymProtocol[P, S] {
     val nbits: Int = orig.nbits
@@ -111,10 +110,10 @@ object OAEP {
 
 object Main extends App {
   import OAEP._
-  val rsa = new RSA(256)
+  val rsa = new RSA(512)
   val rsaOaep = rsa.withOaep
 
-  private def checkRandomString[T, U](asym: AsymProtocol[T, U], key: AKey[T,U]): Unit = {
+  private def checkRandomWord[T, U](asym: AsymProtocol[T, U], key: AKey[T,U]): Unit = {
     val message = BigInt(256, new Random())
     val encrypted = asym.encrypt(message, key.public)
     val decrypted = asym.decrypt(encrypted, key)
@@ -129,7 +128,7 @@ object Main extends App {
   start = System.currentTimeMillis()
   val keyRsa = rsa.gen()
   for{_ <- 0 until iterations} {
-    checkRandomString(rsa, keyRsa)
+    checkRandomWord(rsa, keyRsa)
   }
   finish = System.currentTimeMillis()
   println(s"RSA IS: ${(1000 * mbits) / (finish-start).toDouble} Mb/sec ")
@@ -137,10 +136,8 @@ object Main extends App {
   start = System.currentTimeMillis()
   val keyOaep = rsaOaep.gen()
   for{_ <- 0 until iterations} {
-    checkRandomString(rsaOaep, keyOaep)
+    checkRandomWord(rsaOaep, keyOaep)
   }
   finish = System.currentTimeMillis()
   println(s"RSA-OAEP IS: ${(1000* mbits) / (finish-start).toDouble} Mb/sec ")
-
-
 }
