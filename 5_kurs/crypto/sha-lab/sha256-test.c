@@ -3,8 +3,7 @@
 #include <string.h>
 #include "sha256.h"
 
-int sha256_test()
-{
+int sha256_test() {
 	BYTE text1[] = {"abc"};
 	BYTE text2[] = {"abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq"};
 	BYTE text3[] = {"aaaaaaaaaa"};
